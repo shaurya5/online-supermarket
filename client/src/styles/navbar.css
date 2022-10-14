@@ -1,0 +1,12 @@
+.nav-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link-text {
+  font-weight: bolder;
+}
+
+.link-text:hover {
+  color: rgb(183, 183, 183);
+}
