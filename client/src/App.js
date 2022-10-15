@@ -1,11 +1,11 @@
-import LoginCard from './components/LoginCard';
-import NavigationBar from './components/NavigationBar'
+import LoginCard from './components/login-cards/LoginCard';
+import NavigationBar from './components/navs/NavigationBar'
+import AllRoutes from './AllRoutes'
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
-      <LoginCard />
+      <AllRoutes />
     </div>
   );
 }

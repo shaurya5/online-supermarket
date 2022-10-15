@@ -1,7 +1,8 @@
 import { useState } from "react";
-import styles from "../styles/loginCard.module.css";
+import styles from "../../styles/loginCard.module.css";
+import axios from 'axios';
 
-function RegisterCard() {
+function LoginCard() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
@@ -36,7 +37,13 @@ function RegisterCard() {
   const loginSubmit = (e) => {
     e.preventDefault();
     handleValidation();
+    axios.post(process.env.REACT_APP_AXIOS_BASE_URL, {
+      email, password
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
+  
   return (
     <div className={styles.container}>
       <div className="row d-flex justify-content-center">
@@ -57,7 +64,7 @@ function RegisterCard() {
                 {emailError}
               </small>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
               <label>Password</label>
               <input
                 type="password"
@@ -70,15 +77,7 @@ function RegisterCard() {
                 {passwordError}
               </small>
             </div>
-            <div className="form-group form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label">Check me out</label>
-            </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mt-4">
               Submit
             </button>
           </form>
@@ -88,4 +87,4 @@ function RegisterCard() {
   );
 }
 
-export default RegisterCard;
+export default LoginCard;

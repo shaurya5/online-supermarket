@@ -1,9 +1,13 @@
 import React from 'react';
-import AdminLogin from '../components/AdminLogin';
+import AdminLoginCard from '../components/login-cards/AdminLoginCard';
+import NavigationBar from '../components/navs/NavigationBar';
 
-function AdminLogin(props) {
+function AdminLogin() {
   return (
-    <AdminLogin />
+    <>
+      <NavigationBar />
+      <AdminLoginCard />
+    </>
   );
 }
 

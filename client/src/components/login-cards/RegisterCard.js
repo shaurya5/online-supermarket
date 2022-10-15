@@ -1,14 +1,26 @@
 import { useState } from "react";
-import styles from "../styles/loginCard.module.css";
+import styles from "../../styles/loginCard.module.css";
 
-function AdminLogin() {
+function RegisterCard() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
+  const [name, setName] = useState("")
+  const [nameError, setNameError] = useState("")
+  const [confPass, setConfPass] = useState("")
+  const [confPassError, setConfPassError] = useState("")
 
   const handleValidation = (event) => {
     let formIsValid = true;
+    if(name === "") {
+      setNameError("Name cannot be empty")
+      formIsValid = false;
+      return false;
+    } else {
+      setNameError("")
+      formIsValid = true;
+    }
 
     if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
       formIsValid = false;
@@ -30,6 +42,15 @@ function AdminLogin() {
       formIsValid = true;
     }
 
+    if(password !== confPass) {
+      formIsValid = false;
+      setConfPassError("Password and Confirm Password have to be same")
+      return false;
+    } else {
+      setConfPassError("")
+      formIsValid = true
+    }
+
     return formIsValid;
   };
 
@@ -37,11 +58,27 @@ function AdminLogin() {
     e.preventDefault();
     handleValidation();
   };
+
   return (
     <div className={styles.container}>
       <div className="row d-flex justify-content-center">
         <div className="col-md-4">
           <form id="loginform" onSubmit={loginSubmit}>
+            <div className="form-group">
+              <label>Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="NameInput"
+                name="NameInput"
+                aria-describedby="nameHelp"
+                placeholder="Enter name"
+                onChange={(event) => setName(event.target.value)}
+              />
+              <small id="nameHelp" className="text-danger form-text">
+                {nameError}
+              </small>
+            </div>
             <div className="form-group">
               <label>Email address</label>
               <input
@@ -57,7 +94,7 @@ function AdminLogin() {
                 {emailError}
               </small>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
               <label>Password</label>
               <input
                 type="password"
@@ -70,15 +107,20 @@ function AdminLogin() {
                 {passwordError}
               </small>
             </div>
-            <div className="form-group form-check">
+            <div className="form-group mt-3">
+              <label>Confirm Password</label>
               <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
+                type="password"
+                className="form-control"
+                id="confInputPassword"
+                placeholder="Confirm Password"
+                onChange={(event) => setConfPass(event.target.value)}
               />
-              <label className="form-check-label">Check me out</label>
+              <small id="passworderror" className="text-danger form-text">
+                {confPassError}
+              </small>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mt-4">
               Submit
             </button>
           </form>
@@ -88,4 +130,4 @@ function AdminLogin() {
   );
 }
 
-export default AdminLogin;
+export default RegisterCard;

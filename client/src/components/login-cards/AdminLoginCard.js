@@ -1,7 +1,8 @@
 import { useState } from "react";
-import styles from "../styles/loginCard.module.css";
+import styles from "../../styles/loginCard.module.css";
+import axios from 'axios';
 
-function LoginCard() {
+function AdminLoginCard() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
@@ -36,14 +37,19 @@ function LoginCard() {
   const loginSubmit = (e) => {
     e.preventDefault();
     handleValidation();
+    axios.post(process.env.AXIOS_BASE_URL, {
+      email: email,
+      password: password
+    })
   };
+
   return (
     <div className={styles.container}>
       <div className="row d-flex justify-content-center">
         <div className="col-md-4">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
-              <label>Email address</label>
+              <label>Email address (Admin)</label>
               <input
                 type="email"
                 className="form-control"
@@ -57,7 +63,7 @@ function LoginCard() {
                 {emailError}
               </small>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
               <label>Password</label>
               <input
                 type="password"
@@ -70,15 +76,7 @@ function LoginCard() {
                 {passwordError}
               </small>
             </div>
-            <div className="form-group form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label">Check me out</label>
-            </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mt-4">
               Submit
             </button>
           </form>
@@ -88,4 +86,4 @@ function LoginCard() {
   );
 }
 
-export default LoginCard;
+export default AdminLoginCard;

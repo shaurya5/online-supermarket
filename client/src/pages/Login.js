@@ -1,9 +1,13 @@
 import React from 'react';
-import LoginCard from '../components/LoginCard';
+import LoginCard from '../components/login-cards/LoginCard';
+import NavigationBar from '../components/navs/NavigationBar';
 
-function Login(props) {
+function Login() {
   return (
-    <LoginCard />
+    <>
+      <NavigationBar />
+      <LoginCard />
+    </>
   );
 }
 

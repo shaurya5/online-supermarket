@@ -1,9 +1,13 @@
 import React from 'react';
-import RegisterCard from '../components/RegisterCard';
+import RegisterCard from '../components/login-cards/RegisterCard';
+import NavigationBar from '../components/navs/NavigationBar';
 
-function Register(props) {
+function Register() {
   return (
-    <RegisterCard />
+    <>
+      <NavigationBar />
+      <RegisterCard />
+    </>
   );
 }
 
