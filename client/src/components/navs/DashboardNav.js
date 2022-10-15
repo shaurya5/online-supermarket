@@ -16,8 +16,8 @@ function DashboardNav() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link className="link-text" href="/profile">My Profile</Nav.Link>
-              {/* <Nav.Link className="link-text" href="/register">Register</Nav.Link> */}
               <Nav.Link className="link-text" href="/cart">My cart</Nav.Link>
+              <Nav.Link className="link-text" href="/">Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </div>
