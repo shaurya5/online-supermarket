@@ -62,7 +62,7 @@ function RegisterCard() {
   return (
     <div className={styles.container}>
       <div className="row d-flex justify-content-center">
-        <div className="col-md-4">
+        <div className="col-md-4 border border-secondary p-3 rounded">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
               <label>Name</label>
