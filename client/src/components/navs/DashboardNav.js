@@ -21,17 +21,6 @@ function DashboardNav({ searchShown }) {
         <div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {searchShown && 
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search Products"
-                    className="me-5"
-                    aria-label="Search"
-                    onChange={e => setSearchText(e.target.value)}
-                  />
-                </Form>
-              }
               <Nav.Link className="link-text" href="/profile">
                 My Profile
               </Nav.Link>

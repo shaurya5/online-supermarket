@@ -15,7 +15,7 @@ function NavigationBar() {
         <div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link className="link-text" href="/login">Login</Nav.Link>
+              <Nav.Link className="link-text" href="/login">User Login</Nav.Link>
               <Nav.Link className="link-text" href="/register">Register</Nav.Link>
               <Nav.Link className="link-text" href="/admin-login">Admin Login</Nav.Link>
             </Nav>
