@@ -12,7 +12,7 @@ public class MyUserDetails implements UserDetails {
     private String userName;
 
     public MyUserDetails(String userName){
-        this.userName = userName;
+        this.userName = "xyz";
     }
     public MyUserDetails(){
 
@@ -29,6 +29,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
+        userName = "xyz";
         return userName;
     }
 

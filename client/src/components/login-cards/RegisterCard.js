@@ -6,19 +6,19 @@ function RegisterCard() {
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
-  const [name, setName] = useState("")
-  const [nameError, setNameError] = useState("")
-  const [confPass, setConfPass] = useState("")
-  const [confPassError, setConfPassError] = useState("")
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [confPass, setConfPass] = useState("");
+  const [confPassError, setConfPassError] = useState("");
 
   const handleValidation = (event) => {
     let formIsValid = true;
-    if(name === "") {
-      setNameError("Name cannot be empty")
+    if (name === "") {
+      setNameError("Name cannot be empty");
       formIsValid = false;
       return false;
     } else {
-      setNameError("")
+      setNameError("");
       formIsValid = true;
     }
 
@@ -42,13 +42,13 @@ function RegisterCard() {
       formIsValid = true;
     }
 
-    if(password !== confPass) {
+    if (password !== confPass) {
       formIsValid = false;
-      setConfPassError("Password and Confirm Password have to be same")
+      setConfPassError("Password and Confirm Password have to be same");
       return false;
     } else {
-      setConfPassError("")
-      formIsValid = true
+      setConfPassError("");
+      formIsValid = true;
     }
 
     return formIsValid;
@@ -64,6 +64,7 @@ function RegisterCard() {
       <div className="row d-flex justify-content-center">
         <div className="col-md-4 border border-secondary p-3 rounded">
           <form id="loginform" onSubmit={loginSubmit}>
+            <h4 className="text-center">Register</h4>
             <div className="form-group">
               <label>Name</label>
               <input

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
-import axios from 'axios';
+import axios from "axios";
 
 function AdminLoginCard() {
   const [password, setPassword] = useState("");
@@ -39,8 +39,8 @@ function AdminLoginCard() {
     handleValidation();
     axios.post(process.env.AXIOS_BASE_URL, {
       email: email,
-      password: password
-    })
+      password: password,
+    });
   };
 
   return (
@@ -49,6 +49,7 @@ function AdminLoginCard() {
         <div className="col-md-4 border border-secondary p-3 rounded">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
+              <h4 className="text-center">Admin Login</h4>
               <label>Email address (Admin)</label>
               <input
                 type="email"

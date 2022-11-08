@@ -50,6 +50,7 @@ function LoginCard() {
         <div className="col-md-4 border border-secondary p-3 rounded">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
+              <h4 className="text-center">User Login</h4>
               <label>Email address</label>
               <input
                 type="email"
