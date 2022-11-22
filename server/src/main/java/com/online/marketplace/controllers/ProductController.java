@@ -4,10 +4,7 @@ package com.online.marketplace.controllers;
 import com.online.marketplace.entity.Product;
 import com.online.marketplace.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,11 @@ public class ProductController {
     @GetMapping({"/getAllProducts"})
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
+    }
+
+    @DeleteMapping({"/deleteProductDetails/{productId}"})
+    public void deleteProductDetails(@PathVariable("productId") Integer productId){
+        productService.deleteProductDetails(productId);
     }
 
 }

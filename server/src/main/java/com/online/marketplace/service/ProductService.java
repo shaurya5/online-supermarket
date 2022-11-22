@@ -22,4 +22,8 @@ public class ProductService {
        return (List<Product>) productDao.findAll();
     }
 
+    public void deleteProductDetails(Integer productId){
+        productDao.deleteById(productId);
+    }
+
 }
