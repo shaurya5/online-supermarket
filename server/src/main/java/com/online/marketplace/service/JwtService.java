@@ -44,6 +44,7 @@ public class JwtService implements UserDetailsService {
     }
 
     @Override
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findById(username).get();
 
