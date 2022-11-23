@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 import styles from "../../styles/loginCard.module.css";
 
 function RegisterCard() {
@@ -6,14 +7,16 @@ function RegisterCard() {
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
   const [nameError, setNameError] = useState("");
   const [confPass, setConfPass] = useState("");
   const [confPassError, setConfPassError] = useState("");
 
   const handleValidation = (event) => {
     let formIsValid = true;
-    if (name === "") {
+    if (firstName === "" || lastName === "") {
       setNameError("Name cannot be empty");
       formIsValid = false;
       return false;
@@ -54,19 +57,26 @@ function RegisterCard() {
     return formIsValid;
   };
 
-  const loginSubmit = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     handleValidation();
+    await axios.post('http://localhost:8080/registerNewUser', {
+      userName: username,
+      userFirstName: firstName,
+      userLastName: lastName,
+      userPassword: password 
+    })
+    .then(res => console.log(res))
   };
 
   return (
     <div className={styles.container}>
       <div className="row d-flex justify-content-center">
         <div className="col-md-4 border border-secondary p-3 rounded">
-          <form id="loginform" onSubmit={loginSubmit}>
+          <form id="loginform">
             <h4 className="text-center">Register</h4>
             <div className="form-group">
-              <label>Name</label>
+              <label>First Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -74,13 +84,28 @@ function RegisterCard() {
                 name="NameInput"
                 aria-describedby="nameHelp"
                 placeholder="Enter name"
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => setFirstName(event.target.value)}
               />
               <small id="nameHelp" className="text-danger form-text">
                 {nameError}
               </small>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
+              <label>Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="NameInput"
+                name="NameInput"
+                aria-describedby="nameHelp"
+                placeholder="Enter name"
+                onChange={(event) => setLastName(event.target.value)}
+              />
+              <small id="nameHelp" className="text-danger form-text">
+                {nameError}
+              </small>
+            </div>
+            <div className="form-group mt-2">
               <label>Email address</label>
               <input
                 type="email"
@@ -95,7 +120,22 @@ function RegisterCard() {
                 {emailError}
               </small>
             </div>
-            <div className="form-group mt-3">
+            <div className="form-group mt-2">
+              <label>Username</label>
+              <input
+                type="email"
+                className="form-control"
+                id="EmailInput"
+                name="EmailInput"
+                aria-describedby="emailHelp"
+                placeholder="Enter username"
+                onChange={(event) => setUsername(event.target.value)}
+              />
+              <small id="emailHelp" className="text-danger form-text">
+                {emailError}
+              </small>
+            </div>
+            <div className="form-group mt-2">
               <label>Password</label>
               <input
                 type="password"
@@ -108,20 +148,7 @@ function RegisterCard() {
                 {passwordError}
               </small>
             </div>
-            <div className="form-group mt-3">
-              <label>Confirm Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="confInputPassword"
-                placeholder="Confirm Password"
-                onChange={(event) => setConfPass(event.target.value)}
-              />
-              <small id="passworderror" className="text-danger form-text">
-                {confPassError}
-              </small>
-            </div>
-            <button type="submit" className="btn btn-primary mt-4">
+            <button type="submit" className="btn btn-primary mt-4" onClick={handleClick}>
               Submit
             </button>
           </form>

@@ -60,6 +60,7 @@ public class UserService {
 //        userRoles.add(userRole);
 //        user.setRole(userRoles);
 //        userDao.save(user);
+
     }
 
     public String getEncodedPassword(String password) {
