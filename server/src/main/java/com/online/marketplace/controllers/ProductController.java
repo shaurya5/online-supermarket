@@ -19,7 +19,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping(value = {"/addNewProduct"})
+    @PostMapping({"/addNewProduct"})
     public Product addNewProduct(@RequestBody Product product){
         return productService.addNewProduct(product);
 
