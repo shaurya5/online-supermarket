@@ -24,6 +24,7 @@ public class Product {
             @JoinColumn(name = "image_id")
             }
     )
+   // @GeneratedValue(strategy = GenerationType.AUTO)
     private Set<ImageModel> productImages;
 
     public Set<ImageModel> getProductImages() {
