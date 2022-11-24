@@ -1,49 +1,69 @@
 import { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
-import axios from 'axios';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LoginCard() {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [passwordError, setpasswordError] = useState("");
-  const [emailError, setemailError] = useState("");
+  const [userPassword, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userPasswordError, setUserPasswordError] = useState("");
+  const [userNameError, setUserNameError] = useState("");
+
+  const navigate = useNavigate();
+
+  let config = {
+    headers: {
+      "No-Auth": "True",
+    },
+  };
 
   const handleValidation = (event) => {
     let formIsValid = true;
 
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+    if (!userPassword.match(/^[a-zA-Z]{8,22}$/)) {
       formIsValid = false;
-      setemailError("Email Not Valid");
-      return false;
-    } else {
-      setemailError("");
-      formIsValid = true;
-    }
-
-    if (!password.match(/^[a-zA-Z]{8,22}$/)) {
-      formIsValid = false;
-      setpasswordError(
+      setUserPasswordError(
         "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
       );
       return false;
     } else {
-      setpasswordError("");
+      setUserPasswordError("");
       formIsValid = true;
     }
 
     return formIsValid;
   };
 
-  const loginSubmit = (e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault();
     handleValidation();
-    axios.post(process.env.REACT_APP_AXIOS_BASE_URL, {
-      email, password
-    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "http://localhost:8080/authenticate",
+        // headers: {
+        //   "No-Auth": "True",
+        // },
+        data: {
+          username: userName,
+          password: userPassword,
+        },
+      });
+      console.log(response);
+      if(response.data.user.role[0].name === "user") {
+        localStorage.setItem('role', 'user');
+        localStorage.setItem('token', response.data.jwtToken)
+        navigate('/dashboard')
+      }
+      else {
+        console.log("Authentication error!")
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
-  
+
   return (
     <div className={styles.container}>
       <div className="row d-flex justify-content-center">
@@ -51,18 +71,18 @@ function LoginCard() {
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
               <h4 className="text-center">User Login</h4>
-              <label>Email address</label>
+              <label>Username</label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
-                id="EmailInput"
-                name="EmailInput"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
-                onChange={(event) => setEmail(event.target.value)}
+                id="userNameInput"
+                name="userNameInput"
+                aria-describedby="userNameHelp"
+                placeholder="Enter username"
+                onChange={(event) => setUserName(event.target.value)}
               />
-              <small id="emailHelp" className="text-danger form-text">
-                {emailError}
+              <small id="usernameHelp" className="text-danger form-text">
+                {userNameError}
               </small>
             </div>
             <div className="form-group mt-3">
@@ -74,8 +94,8 @@ function LoginCard() {
                 placeholder="Password"
                 onChange={(event) => setPassword(event.target.value)}
               />
-              <small id="passworderror" className="text-danger form-text">
-                {passwordError}
+              <small id="userPassworderror" className="text-danger form-text">
+                {userPasswordError}
               </small>
             </div>
             <div className="mt-2">

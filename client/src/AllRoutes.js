@@ -7,6 +7,8 @@ import Dashboard from './pages/Dashboard'
 import ForgotPwd from './components/login-cards/ForgotPwd';
 import Profile from './pages/Profile';
 import Cart from './pages/Cart'
+import AuthenticationError from './pages/AuthenticationError';
+import InvalidRoute from './pages/InvalidRoute';
 
 function AllRoutes() {
   return (
@@ -20,6 +22,9 @@ function AllRoutes() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/auth-error' element={<AuthenticationError />} />
+        <Route path='/*' element={<InvalidRoute />} />
+
       </Routes>
     </Router>
   );

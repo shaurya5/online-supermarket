@@ -1,24 +1,19 @@
 import { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AdminLoginCard() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
-  const [emailError, setemailError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+
+  const navigate = useNavigate()
 
   const handleValidation = (event) => {
     let formIsValid = true;
 
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
-      formIsValid = false;
-      setemailError("Email Not Valid");
-      return false;
-    } else {
-      setemailError("");
-      formIsValid = true;
-    }
 
     if (!password.match(/^[a-zA-Z]{8,22}$/)) {
       formIsValid = false;
@@ -34,13 +29,33 @@ function AdminLoginCard() {
     return formIsValid;
   };
 
-  const loginSubmit = (e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault();
     handleValidation();
-    axios.post(process.env.AXIOS_BASE_URL, {
-      email: email,
-      password: password,
-    });
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "http://localhost:8080/authenticate",
+        // headers: {
+        //   "No-Auth": "True",
+        // },
+        data: {
+          username,
+          password
+        },
+      });
+      console.log(response);
+      if(response.data.user.role[0].name === "admin") {
+        localStorage.setItem('role', 'admin');
+        localStorage.setItem('token', response.data.jwtToken)
+        navigate('/dashboard')
+      }
+      else {
+        console.log("Authentication error!")
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -50,18 +65,18 @@ function AdminLoginCard() {
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
               <h4 className="text-center">Admin Login</h4>
-              <label>Email address (Admin)</label>
+              <label>Username</label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
-                id="EmailInput"
-                name="EmailInput"
+                id="username"
+                name="usernameInput"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(event) => setUsername(event.target.value)}
               />
               <small id="emailHelp" className="text-danger form-text">
-                {emailError}
+                {/* {emailError} */}
               </small>
             </div>
             <div className="form-group mt-3">

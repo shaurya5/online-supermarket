@@ -5,9 +5,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/navbar.css";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function DashboardNav({ searchShown }) {
   const [searchText, setSearchText] = useState("")
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    localStorage.removeItem('role')
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
 
   return (
     <Navbar bg="secondary" expand="lg">
@@ -27,7 +35,7 @@ function DashboardNav({ searchShown }) {
               <Nav.Link className="link-text" href="/cart">
                 My cart
               </Nav.Link>
-              <Nav.Link className="link-text" href="#">
+              <Nav.Link className="link-text" href="#" onClick={handleLogout}>
                 Logout
               </Nav.Link>
             </Nav>

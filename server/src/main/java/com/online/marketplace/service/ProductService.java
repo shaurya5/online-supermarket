@@ -15,7 +15,6 @@ public class ProductService {
 
     public Product addNewProduct(Product product){
         return productDao.save(product);
-
     }
 
     public List<Product> getAllProducts(){
