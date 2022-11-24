@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Id;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,11 @@ public class ProductController {
 
     }
 
+    @GetMapping({"/getProductDetailsById/{productId}"})
+    public Product getProductDetailsById(@PathVariable("productId") Integer productId){
+        return productService.getProductDetailsById(productId);
+    }
+
     @GetMapping({"/getAllProducts"})
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
@@ -35,5 +41,6 @@ public class ProductController {
     public void deleteProductDetails(@PathVariable("productId") Integer productId){
         productService.deleteProductDetails(productId);
     }
+
 
 }

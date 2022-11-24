@@ -30,6 +30,10 @@ public class OrderDetail {
         this.user = user;
     }
 
+    public OrderDetail() {
+
+    }
+
     public void setOrderAmount(Double orderAmount) {
         this.orderAmount = orderAmount;
     }
