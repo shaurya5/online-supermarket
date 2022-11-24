@@ -20,10 +20,9 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping({"/addNewProduct"})
+    @CrossOrigin(origins = "http://localhost:3000")
     public Product addNewProduct(@RequestBody Product product){
         return productService.addNewProduct(product);
-
-
     }
 
     @GetMapping({"/getAllProducts"})
