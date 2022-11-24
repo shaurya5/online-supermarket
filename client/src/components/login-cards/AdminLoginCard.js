@@ -46,6 +46,8 @@ function AdminLoginCard() {
       });
       console.log(response);
       if(response.data.user.role[0].name === "admin") {
+        localStorage.setItem('role', 'admin');
+        localStorage.setItem('token', response.data.jwtToken)
         navigate('/dashboard')
       }
       else {

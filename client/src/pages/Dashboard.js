@@ -1,51 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "../components/dashboard/ProductCard";
 import DashboardNav from "../components/navs/DashboardNav";
 import { Container, CardGroup } from "react-bootstrap";
 import styles from "../styles/dashboard.module.css";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const [searchText, setSearchText] = useState("")
-
-  const products = [
-    {
-      productName: "T-Shirt",
-      productPrice: "120",
-    },
-    {
-      productName: "T-Shirt",
-      productPrice: "200",
-    },
-    {
-      productName: "T-Shirt",
-      productPrice: "120",
-    },
-    {
-      productName: "T-Shirt",
-      productPrice: "200",
-    },
-    {
-      productName: "Pringles",
-      productPrice: "120",
-    },
-    {
-      productName: "Doritos",
-      productPrice: "200",
-    },
-    {
-      productName: "Trousers",
-      productPrice: "120",
-    },
-    {
-      productName: "Jeans",
-      productPrice: "200",
-    },
-  ];
+  const [products, setProducts] = useState([])
+  const navigate = useNavigate();
 
   const filteredProducts = products.filter(product => {
     return product.productName.toLowerCase().includes(searchText.toLowerCase())  
   })
+  
+  useEffect(() => {
+    if(!localStorage.getItem('role') || !localStorage.getItem('token')) {
+      navigate('/auth-error')
+    }
+  }, [])
+
+  useEffect(() => {
+    (async () => {
+      const allProducts = await axios.get('http://localhost:8080/getAllProducts')
+      setProducts(allProducts.data)
+    })();
+  }, []);
 
   return (
     <>
@@ -66,7 +48,7 @@ function Dashboard() {
               <div key={index} className="m-3">
                 <ProductCard
                   productName={product.productName}
-                  productPrice={product.productPrice}
+                  productPrice={product.productActualPrice}
                 />
               </div>
             );

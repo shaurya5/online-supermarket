@@ -14,11 +14,15 @@ public class Product {
     private String productDescription;
     private Double productDiscountedPrice;
     private Double productActualPrice;
-
     private String productImage;
 
+    public String getProductImage() {
+        return productImage;
+    }
 
-
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 
     public Integer getProductID() {
         return productID;

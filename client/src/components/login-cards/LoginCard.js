@@ -52,6 +52,8 @@ function LoginCard() {
       });
       console.log(response);
       if(response.data.user.role[0].name === "user") {
+        localStorage.setItem('role', 'user');
+        localStorage.setItem('token', response.data.jwtToken)
         navigate('/dashboard')
       }
       else {
