@@ -3,36 +3,49 @@ import DashboardNav from "../components/navs/DashboardNav";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FileBase from 'react-file-base64'
+import FileBase from "react-file-base64";
 
 function AddProducts() {
-  async function handleClick(e) {
-    // try {
-    //   const response = await axios.post({
-    //     'http://localhost:8080/'
-    //   })
-    // }
-    e.preventDefault()
-    // try {
-    //   const response = await axios.post({
-    //     'http://localhost:8080/addNewProduct',
-    //     {productName, }
-    //   })
-    // } 
-    // catch(err) {
-    //   console.log(err);
-    // }
-    console.log(imageFile.selectedFile)
-    console.log(imageFile.selectedFile.length)
+  async function handleClick(event) {
+    event.preventDefault();
+    const productName = event.target[0].value;
+    const productDescription = event.target[1].value;
+    const productActualPrice = event.target[2].value;
+    const productDiscountedPrice = event.target[3].value;
+    const imageCode = imageFile.selectedFile;
+
+    const data = {
+      productName,
+      productDescription,
+      productActualPrice,
+      productDiscountedPrice,
+      imageCode
+    };
+
+    // console.log();
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/addNewProduct', data
+      )
+      console.log(response)
+    }
+    catch(err) {
+      console.log(err);
+    }
+    // console.log(imageFile.selectedFile);
+    // console.log(imageFile.selectedFile.length);
   }
 
-  const [imageFile, setImageFile] = useState({})
+  const [imageFile, setImageFile] = useState({});
 
   return (
     <>
       <DashboardNav />
       <div>
-        <Form className="w-100 mt-5 d-flex flex-column justify-content-center align-items-center">
+        <Form
+          className="w-100 mt-5 d-flex flex-column justify-content-center align-items-center"
+          onSubmit={handleClick}
+        >
           <Form.Group className="mb-3 w-25" controlId="formBasicEmail">
             <h3>Add New Product</h3>
           </Form.Group>
@@ -53,9 +66,14 @@ function AddProducts() {
             <Form.Control type="text" placeholder="" />
           </Form.Group>
           <Form.Group className="mb-3 w-25" controlId="formBasicEmail">
-            <FileBase type="file" multiple={false} onChange={e => e.target.files[0]} onDone={({base64}) => setImageFile({selectedFile: base64})} />
+            <FileBase
+              type="file"
+              multiple={false}
+              onChange={(e) => e.target.files[0]}
+              onDone={({ base64 }) => setImageFile({ selectedFile: base64 })}
+            />
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleClick}>
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>

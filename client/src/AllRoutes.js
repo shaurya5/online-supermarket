@@ -23,6 +23,7 @@ function AllRoutes() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/add-products' element={<AddProducts />} />
         <Route path='/auth-error' element={<AuthenticationError />} />
         <Route path='/add-products' element={<AddProducts />} />
         <Route path='/*' element={<InvalidRoute />} />
