@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class OrderDetailController {
+public class  OrderDetailController {
 
  @Autowired
  private OrderDetailService orderDetailService;
 
- @PreAuthorize("hasRole('User')")
+ // @PreAuthorize("hasRole('User')")
  @PostMapping({"/placeOrder"})
     public void placeOrder(@RequestBody OrderInput orderInput){
      orderDetailService.placeOrder(orderInput);
