@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Cart from './pages/Cart'
 import AuthenticationError from './pages/AuthenticationError';
 import InvalidRoute from './pages/InvalidRoute';
+import AddProducts from './pages/AddProducts';
 
 function AllRoutes() {
   return (
@@ -23,7 +24,10 @@ function AllRoutes() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/auth-error' element={<AuthenticationError />} />
+        <Route path='/add-products' element={<AddProducts />} />
         <Route path='/*' element={<InvalidRoute />} />
+        
+
 
       </Routes>
     </Router>
