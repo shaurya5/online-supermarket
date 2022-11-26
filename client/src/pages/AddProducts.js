@@ -19,7 +19,7 @@ function AddProducts() {
       productDescription,
       productActualPrice,
       productDiscountedPrice,
-      imageCode
+      productImage: imageCode
     };
 
     // console.log();

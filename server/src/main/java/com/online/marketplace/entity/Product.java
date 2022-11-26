@@ -14,6 +14,7 @@ public class Product {
     private String productDescription;
     private Double productDiscountedPrice;
     private Double productActualPrice;
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String productImage;
 
     public String getProductImage() {
