@@ -37,6 +37,7 @@ public class ProductController {
     }
 
     @DeleteMapping({"/deleteProductDetails/{productId}"})
+    @CrossOrigin(origins = "http://localhost:3000")
     public void deleteProductDetails(@PathVariable("productId") Integer productId){
         productService.deleteProductDetails(productId);
     }

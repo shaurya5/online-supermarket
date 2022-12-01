@@ -3,7 +3,7 @@ import styles from "../../styles/loginCard.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function AdminLoginCard() {
+function ManagerLoginCard() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
@@ -48,7 +48,7 @@ function AdminLoginCard() {
       if(response.data.user.role[0].name === "admin") {
         localStorage.setItem('role', 'admin');
         localStorage.setItem('token', response.data.jwtToken)
-        navigate('/admin-dashboard')
+        navigate('/dashboard')
       }
       else {
         console.log("Authentication error!")
@@ -64,7 +64,7 @@ function AdminLoginCard() {
         <div className="col-md-4 border border-secondary p-3 rounded">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
-              <h4 className="text-center">Admin Login</h4>
+              <h4 className="text-center">Manager Login</h4>
               <label>Username</label>
               <input
                 type="text"
@@ -105,4 +105,4 @@ function AdminLoginCard() {
   );
 }
 
-export default AdminLoginCard;
+export default ManagerLoginCard;

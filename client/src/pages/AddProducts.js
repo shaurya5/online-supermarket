@@ -4,6 +4,7 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FileBase from "react-file-base64";
+import AdminNav from "../components/navs/AdminNav";
 
 function AddProducts() {
   async function handleClick(event) {
@@ -40,7 +41,7 @@ function AddProducts() {
 
   return (
     <>
-      <DashboardNav />
+      <AdminNav />
       <div>
         <Form
           className="w-100 mt-5 d-flex flex-column justify-content-center align-items-center"

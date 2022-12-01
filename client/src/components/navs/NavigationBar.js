@@ -18,6 +18,7 @@ function NavigationBar() {
               <Nav.Link className="link-text" href="/login">User Login</Nav.Link>
               <Nav.Link className="link-text" href="/register">Register</Nav.Link>
               <Nav.Link className="link-text" href="/admin-login">Admin Login</Nav.Link>
+              <Nav.Link className="link-text" href="/manager-login">Manager Login</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </div>
