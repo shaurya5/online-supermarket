@@ -10,6 +10,17 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userPassword;
+
+    private Integer wallet;
+
+    public Integer getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Integer wallet) {
+        this.wallet = wallet;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
     joinColumns = {
