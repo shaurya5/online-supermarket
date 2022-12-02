@@ -1,5 +1,4 @@
 import { useState } from "react";
-import DashboardNav from "../components/navs/DashboardNav";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,7 +22,6 @@ function AddProducts() {
       productImage: imageCode
     };
 
-    // console.log();
     try {
       const response = await axios.post(
         'http://localhost:8080/addNewProduct', data

@@ -42,5 +42,11 @@ public class ProductController {
         productService.deleteProductDetails(productId);
     }
 
+    @PutMapping({"/editProductDetails"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Product editProductDetails(@RequestBody Product product){
+        return productService.editProductDetails(product);
+    }
+
 
 }

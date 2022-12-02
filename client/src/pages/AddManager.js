@@ -20,7 +20,9 @@ function AddManager() {
           userPassword: password,
         }
       );
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <>

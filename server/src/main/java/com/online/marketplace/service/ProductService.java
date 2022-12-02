@@ -30,5 +30,13 @@ public class ProductService {
         productDao.deleteById(productId);
     }
 
-
+    public Product editProductDetails(Product product) {
+        Integer productId = product.getProductID();
+        Product prod = productDao.findById(productId).get();
+        prod.setProductName(product.getProductName());
+        prod.setProductDescription(product.getProductDescription());
+        prod.setProductActualPrice(product.getProductActualPrice());
+        prod.setProductDiscountedPrice(product.getProductDiscountedPrice());
+        return productDao.save(prod);
+    }
 }

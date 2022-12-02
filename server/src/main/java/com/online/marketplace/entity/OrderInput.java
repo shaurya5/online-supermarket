@@ -2,7 +2,7 @@ package com.online.marketplace.entity;
 
 import java.util.List;
 
-public class OrderInput {
+public class  OrderInput {
     private String fullName;
     private String fullAddress;
     private String contactNumber;
