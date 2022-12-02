@@ -41,6 +41,11 @@ public class UserService {
         userRole.setDescription("User Role");
         roleDao.save(userRole);
 
+        Role managerRole = new Role();
+        managerRole.setName("manager");
+        managerRole.setDescription("Manager Role");
+        roleDao.save(managerRole);
+
         User adminUser = new User();
         adminUser.setUserFirstName("admin");
         adminUser.setUserLastName("admin");

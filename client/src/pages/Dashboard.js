@@ -49,6 +49,7 @@ function Dashboard() {
                 <ProductCard
                   productName={product.productName}
                   productPrice={product.productActualPrice}
+                  productPhoto={product.productImage}
                 />
               </div>
             );

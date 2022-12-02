@@ -7,8 +7,7 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function DashboardNav({ searchShown }) {
-  const [searchText, setSearchText] = useState("")
+function DashboardNav() {
   const navigate = useNavigate()
 
   function handleLogout() {
