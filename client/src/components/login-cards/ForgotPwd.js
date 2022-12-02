@@ -1,9 +1,40 @@
 import React, { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
 import NavigationBar from "../navs/NavigationBar";
+import emailjs from "emailjs-com";
+import axios from "axios";
 
 function ForgotPwd() {
   const [email, setEmail] = useState("");
+
+  function generateRandomPassword(length) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  async function handleClick(e) {
+    e.preventDefault();
+    const new_password = generateRandomPassword(10);
+    emailjs.send(
+      "service_zo6gucq",
+      "template_og6jr4o",
+      {
+        new_password,
+        user_email: email
+      },
+      "ITZ1kNWi5iduyLDxv"
+    );
+
+    const request = await axios.put('http://localhost:8080/editUserDetails', {
+      // TODO : Complete the call
+    })
+  }
 
   return (
     <>
@@ -17,13 +48,13 @@ function ForgotPwd() {
               type="email"
               className="form-control"
               id="EmailInput"
-              name="EmailInput"
+              name="user_email"
               aria-describedby="emailHelp"
               placeholder="Enter email"
               onChange={(event) => setEmail(event.target.value)}
             />
 
-            <button type="submit" className="btn btn-primary mt-3">
+            <button onClick={handleClick} className="btn btn-primary mt-3">
               Submit
             </button>
           </div>

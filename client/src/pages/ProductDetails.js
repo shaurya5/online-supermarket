@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Form, Button, Table, Modal } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminNav from "../components/navs/AdminNav";
 
@@ -8,7 +8,7 @@ function ProductDetails() {
   const [productDetails, setProductDetails] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [productId, setProductId] = useState(null);
-  const [currentProduct, setCurrentProduct] = useState({})
+  const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -19,10 +19,12 @@ function ProductDetails() {
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`http://localhost:8080/getProductDetailsById/${productId}`)
-      setCurrentProduct(response.data)
+      const response = await axios.get(
+        `http://localhost:8080/getProductDetailsById/${productId}`
+      );
+      setCurrentProduct(response.data);
     })();
-  }, [productId])
+  }, [productId]);
 
   async function handleEdit(event) {
     event.preventDefault();
@@ -38,16 +40,16 @@ function ProductDetails() {
         productName,
         productDescription,
         productActualPrice,
-        productDiscountedPrice
+        productDiscountedPrice,
       }
     );
-    alert('Product Info Updated!');
-    setShowModal(false)
+    alert("Product Info Updated!");
+    setShowModal(false);
   }
 
   async function handleDelete(e) {
     try {
-      const productID = e.target.parentElement.parentElement.cells[0].innerHTML
+      const productID = e.target.parentElement.parentElement.cells[0].innerHTML;
       const request = await axios.delete(
         `http://localhost:8080/deleteProductDetails/${productID}`
       );
@@ -59,14 +61,13 @@ function ProductDetails() {
 
   const handleClose = () => {
     setShowModal(false);
-  }
+  };
 
-  const handleShow = (e) => { 
+  const handleShow = (e) => {
     setShowModal(true);
-    const productID = e.target.parentElement.parentElement.cells[0].innerHTML 
-    setProductId(productID)
-    console.log(JSON.stringify(currentProduct))
-  }
+    const productID = e.target.parentElement.parentElement.cells[0].innerHTML;
+    setProductId(productID);
+  };
 
   return (
     <>
@@ -107,35 +108,39 @@ function ProductDetails() {
           </tbody>
         </table>
 
-        <Modal show={showModal} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Form
-              className="w-100 mt-4 d-flex flex-column justify-content-center align-items-center"
-              onSubmit={handleEdit}
-            >
-              <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
-                <h3>Edit Product Details</h3>
-              </Form.Group>
-              <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
-                <Form.Label>Product Name</Form.Label>
-                <Form.Control type="text" placeholder="" />
-              </Form.Group>
-              <Form.Group className="mb-3 w-50" controlId="formBasicPassword">
-                <Form.Label>Product Description</Form.Label>
-                <Form.Control as="textarea" placeholder="" />
-              </Form.Group>
-              <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
-                <Form.Label>Product Price</Form.Label>
-                <Form.Control type="text" placeholder="" />
-              </Form.Group>
-              <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
-                <Form.Label>Discounted Price (if any)</Form.Label>
-                <Form.Control type="text" placeholder="" />
-              </Form.Group>
-              <Button variant="primary" type="submit">Submit</Button>
-            </Form>
-          </Modal.Header>
-        </Modal>
+        {Object.keys(currentProduct).length !== 0 && (
+          <Modal show={showModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Form
+                className="w-100 mt-4 d-flex flex-column justify-content-center align-items-center"
+                onSubmit={handleEdit}
+              >
+                <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
+                  <h3>Edit Product Details</h3>
+                </Form.Group>
+                <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
+                  <Form.Label>Product Name</Form.Label>
+                  <Form.Control type="text" placeholder="" defaultValue={currentProduct.productName} />
+                </Form.Group>
+                <Form.Group className="mb-3 w-50" controlId="formBasicPassword">
+                  <Form.Label>Product Description</Form.Label>
+                  <Form.Control as="textarea" placeholder="" defaultValue={currentProduct.productDescription} />
+                </Form.Group>
+                <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
+                  <Form.Label>Product Price</Form.Label>
+                  <Form.Control type="text" placeholder="" defaultValue={currentProduct.productActualPrice} />
+                </Form.Group>
+                <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
+                  <Form.Label>Discounted Price (if any)</Form.Label>
+                  <Form.Control type="text" placeholder="" defaultValue={currentProduct.productDiscountedPrice} />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+            </Modal.Header>
+          </Modal>
+        )}
       </div>
     </>
   );
