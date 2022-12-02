@@ -5,6 +5,7 @@ import com.online.marketplace.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,4 +40,20 @@ public class ProductService {
         prod.setProductDiscountedPrice(product.getProductDiscountedPrice());
         return productDao.save(prod);
     }
+    public List<Product> getProductDetails(boolean isSingleProductCheckout, Integer productId){
+        if(isSingleProductCheckout){
+            // we buy single product
+
+            List <Product> list = new ArrayList<>();
+            Product product = productDao.findById(productId).get();
+            list.add(product);
+            return list;
+        }
+        else{
+            // we checkout entire cart
+        }
+        return new ArrayList<>();
+    }
+
+
 }
