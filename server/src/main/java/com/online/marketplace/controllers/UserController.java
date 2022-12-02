@@ -1,5 +1,6 @@
 package com.online.marketplace.controllers;
 
+import com.online.marketplace.entity.Product;
 import com.online.marketplace.entity.User;
 import com.online.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     public String forUser(){
         return "This URL is only accessible to the user";
+    }
+
+    @PutMapping({"/editUserDetails"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public User editUserDetails(@RequestBody User user){
+        return userService.editUserDetails(user);
     }
 
 }

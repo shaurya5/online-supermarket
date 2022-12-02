@@ -2,6 +2,7 @@ package com.online.marketplace.service;
 
 import com.online.marketplace.dao.RoleDao;
 import com.online.marketplace.dao.UserDao;
+import com.online.marketplace.entity.Product;
 import com.online.marketplace.entity.Role;
 import com.online.marketplace.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,16 @@ public class UserService {
 
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    public User editUserDetails(User user) {
+        String userName = user.getUserName();
+        User usert = userDao.findById(userName).get();
+        usert.setUserName(user.getUserName());
+        usert.setUserFirstName(user.getUserFirstName());
+        usert.setUserLastName(user.getUserLastName());
+        usert.setWallet(user.getWallet());
+        usert.setUserPassword(getEncodedPassword(user.getUserPassword()));
+        return userDao.save(usert);
     }
 }
