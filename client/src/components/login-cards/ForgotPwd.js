@@ -32,7 +32,7 @@ function ForgotPwd() {
     );
 
     const request = await axios.put('http://localhost:8080/editUserDetails', {
-      // TODO : Complete the call
+      userPassword: new_password
     })
   }
 
