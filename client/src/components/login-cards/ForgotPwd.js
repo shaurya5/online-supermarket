@@ -21,15 +21,15 @@ function ForgotPwd() {
   async function handleClick(e) {
     e.preventDefault();
     const new_password = generateRandomPassword(10);
-    emailjs.send(
-      "service_zo6gucq",
-      "template_og6jr4o",
-      {
-        new_password,
-        user_email: email
-      },
-      "ITZ1kNWi5iduyLDxv"
-    );
+    // emailjs.send(
+    //   "service_zo6gucq",
+    //   "template_og6jr4o",
+    //   {
+    //     new_password,
+    //     user_email: email
+    //   },
+    //   "ITZ1kNWi5iduyLDxv"
+    // );
 
     const request = await axios.put('http://localhost:8080/editUserDetails', {
       userPassword: new_password
