@@ -7,8 +7,10 @@ public class OrderDetail {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
+
+    private String invoiceNumber;
     private String orderFullName;
     private String orderFullOrder;
     private String orderContactNumber;
@@ -20,7 +22,7 @@ public class OrderDetail {
     @OneToOne
     private User user;
 
-    public OrderDetail(String orderFullName, String orderFullOrder, String orderContactNumber, String orderAlternateContactNumber, String orderStatus, Double orderAmount, Product product, User user) {
+    public OrderDetail(String orderFullName, String orderFullOrder, String orderContactNumber, String orderAlternateContactNumber, String orderStatus, Double orderAmount, Product product, User user,String invoiceNumber) {
         this.orderFullName = orderFullName;
         this.orderFullOrder = orderFullOrder;
         this.orderContactNumber = orderContactNumber;
@@ -29,6 +31,7 @@ public class OrderDetail {
         this.orderAmount = orderAmount;
         this.product = product;
         this.user = user;
+        this.invoiceNumber = invoiceNumber;
     }
 
     public OrderDetail() {
