@@ -21,9 +21,26 @@ public class OrderDetailService {
 
     @Autowired
     private UserDao userDao;
+    private String generateInvoiceNumber(int n) {
+        String AlphaNumericString = "0123456789";
+
+
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+            int index = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+        return sb.toString();
+    }
     public void placeOrder(OrderInput orderInput){
 
         List<OrderProductQuantity> productQuantityList = orderInput.getOrderProductQuantityList();
+       // List<OrderDetail> ordersList = new ArrayList<>();
+        String invoiceNumber = generateInvoiceNumber(15);
 
         for(OrderProductQuantity o: productQuantityList){
             Product product = productDao.findById(o.getProductId()).get();
@@ -32,7 +49,6 @@ public class OrderDetailService {
             User user = userDao.findById(currentUser).get();
 
             OrderDetail orderDetail = new OrderDetail(
-
                     orderInput.getFullName(),
                     orderInput.getFullAddress(),
                     orderInput.getContactNumber(),
@@ -40,10 +56,10 @@ public class OrderDetailService {
                     ORDER_PLACED,
                     product.getProductDiscountedPrice()*o.getQuantity(),
                     product,
-                    user
-                    // orderAmount: 100.09,
-
+                    user,
+                    invoiceNumber
             );
+           // ordersList.add(orderDetail);
             orderDetailDao.save(orderDetail);
         }
     }
