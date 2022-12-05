@@ -26,6 +26,12 @@ public class UserController {
         return userService.registerNewUser(user);
     }
 
+    @PostMapping({"/registerNewManager"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public User registerNewManager(@RequestBody User user){
+        return userService.registerNewManager(user);
+    }
+
     @GetMapping({"/adminOnly"})
     @PreAuthorize("hasRole('admin')")
     @CrossOrigin(origins = "http://localhost:3000")
@@ -46,4 +52,15 @@ public class UserController {
         return userService.editUserDetails(user);
     }
 
+    @DeleteMapping({"/deleteUserDetails/{userName}"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public void deleteUserDetails(@PathVariable("userName") String userName){
+        userService.deleteUserDetails(userName);
+    }
+
+    @DeleteMapping({"/deleteManagerDetails/{userName}"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public void deleteManagerDetails(@PathVariable("userName") String userName){
+        userService.deleteManagerDetails(userName);
+    }
 }

@@ -31,6 +31,15 @@ public class UserService {
         return userDao.save(user);
     }
 
+    public User registerNewManager(User user) {
+        Role role = roleDao.findById("manager").get();
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRole(roles);
+        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+        return userDao.save(user);
+    }
+
     public void initRolesAndUser() {
         Role adminRole = new Role();
         adminRole.setName("admin");
@@ -83,4 +92,12 @@ public class UserService {
         usert.setUserPassword(getEncodedPassword(user.getUserPassword()));
         return userDao.save(usert);
     }
+
+    public void deleteUserDetails(String userName){
+        userDao.deleteById(userName);
+    }
+    public void deleteManagerDetails(String userName){
+        userDao.deleteById(userName);
+    }
+
 }

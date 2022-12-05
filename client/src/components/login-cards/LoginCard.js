@@ -50,10 +50,11 @@ function LoginCard() {
           password: userPassword,
         },
       });
-      console.log(response);
+      // console.log(response);
       if(response.data.user.role[0].name === "user") {
         localStorage.setItem('role', 'user');
         localStorage.setItem('token', response.data.jwtToken)
+        localStorage.setItem('username', response.data.user.userName)
         navigate('/dashboard')
       }
       else {

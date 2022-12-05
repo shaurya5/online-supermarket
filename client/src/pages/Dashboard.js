@@ -50,6 +50,7 @@ function Dashboard() {
                   productName={product.productName}
                   productPrice={product.productActualPrice}
                   productPhoto={product.productImage}
+                  productId={product.productID}
                 />
               </div>
             );

@@ -1,29 +1,44 @@
-import { useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
-import cart from '../../assets/cart.jpg'
-import Button from 'react-bootstrap/Button'
+import { useEffect } from "react";
+import Card from "react-bootstrap/Card";
+import cart from "../../assets/cart.jpg";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function ProductCard({ productPhoto=cart, productName, productPrice }) {
-
-  function handleClick() {
+function ProductCard({
+  productPhoto = cart,
+  productName,
+  productPrice,
+  productId,
+}) {
+  function handleClick(e) {
+    e.preventDefault();
     let cardProducts = JSON.parse(localStorage.getItem("cartProds") || "[]");
+    const productId = e.target.firstElementChild.innerText;
     const productDetails = {
       productName,
-      productPrice
+      productPrice,
+      productId,
+    };
+    cardProducts.push(productDetails);
+    console.log(e)
+    e.target.firstChild.textContent = (e.target.firstChild.textContent === "Add to cart ") ? "Remove from cart " : "Add to cart "
+    if(e.target.firstChild.textContent === 'Add to cart ') {
+      cardProducts = cardProducts.filter((product) => {
+        return product.productId !== productId
+      })
     }
-    cardProducts.push(productDetails)
-    localStorage.setItem('cartProds', JSON.stringify(cardProducts))
+    localStorage.setItem("cartProds", JSON.stringify(cardProducts));
   }
 
   return (
-    <Card style={{ width: '15rem' }}>
+    <Card style={{ width: "15rem" }}>
       <Card.Img variant="top" src={productPhoto} />
       <Card.Body>
         <Card.Title>{productName}</Card.Title>
-        <Card.Text>
-          Price: {productPrice}
-        </Card.Text>
-        <Button onClick={handleClick}>Add to cart</Button>
+        <Card.Text>Price: {productPrice}</Card.Text>
+        <Button onClick={handleClick}>
+          Add to cart <div className="d-none">{productId}</div>
+        </Button>
       </Card.Body>
     </Card>
   );
