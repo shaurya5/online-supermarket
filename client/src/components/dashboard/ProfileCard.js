@@ -109,6 +109,45 @@ function ProfileCard() {
     );
   }
 
+  function TopupWallet() {
+    const [wallet, setWallet] = useState("")
+    const currentWallet = userDetails.wallet
+
+    async function handleClick(e) {
+      e.preventDefault()
+      try {
+        const request = await axios.put('http://localhost:8080/topupWallet', {
+          userName: localStorage.getItem('username'),
+          wallet: parseInt(wallet) + parseInt(currentWallet)
+        })
+        alert('Money added to wallet!')
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+
+    return (
+      <div>
+        <Form className="w-25 mt-5 d-flex flex-column flex-start justify-content-center align-items-center border">
+          <Form.Group>
+            <h3>Top Up Wallet</h3>
+            <h4>Current balance: {userDetails.wallet}</h4>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Enter amount to add to wallet</Form.Label>
+            <Form.Control
+              type="text"
+              value={wallet}
+              onChange={(e) => setWallet(e.target.value)}
+            />
+          </Form.Group>
+          <Button onClick={handleClick}>Add</Button>
+        </Form>
+      </div>
+    )
+  }
+
   function handleClick() {
     setShowModal(true);
   }
@@ -130,7 +169,7 @@ function ProfileCard() {
       {Object.keys(userDetails).length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <Form className="w-100 mt-5 d-flex flex-column flex-start justify-content-center align-items-center">
+        <Form className="w-25 mt-5 d-flex flex-column flex-start justify-content-center align-items-center border">
           <Form.Group className="mb-3">
             <Form.Label>User Name</Form.Label>
             <Form.Control
@@ -161,6 +200,7 @@ function ProfileCard() {
           </div>
         </Form>
       )}
+      <TopupWallet />
       <ModalComponent />
       <PasswordModal />
     </div>

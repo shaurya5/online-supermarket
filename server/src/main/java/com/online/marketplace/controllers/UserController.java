@@ -74,4 +74,10 @@ public class UserController {
     public User getUserById(@PathVariable("userName") String userName) {
         return userService.getUserById(userName);
     }
+
+    @PutMapping({"/topupWallet"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public User topupWallet(@RequestBody User user) {
+        return userService.topupWallet(user);
+    }
 }

@@ -11,7 +11,7 @@ public class User {
     private String userLastName;
     private String userPassword;
 
-    private Integer wallet;
+    private Integer wallet = 1000;
 
     public Integer getWallet() {
         return wallet;

@@ -98,6 +98,12 @@ public class UserService {
         return userDao.save(usert);
     }
 
+    public User topupWallet(User user) {
+        String userName = user.getUserName();
+        User usert = userDao.findById(userName).get();
+        usert.setWallet(user.getWallet());
+        return userDao.save(usert);
+    }
     public User getUserById(String userName){
         return userDao.findById(userName).get();
     }
