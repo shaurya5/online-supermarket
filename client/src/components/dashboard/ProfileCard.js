@@ -23,6 +23,23 @@ function ProfileCard() {
   }, []);
 
   function ModalComponent() {
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+
+    async function handleEditClick() {
+      try {
+        const request = await axios.put('http://localhost:8080/editUserDetails', {
+          userName: localStorage.getItem('username'),
+          userFirstName: firstName,
+          userLastName: lastName
+        })
+        alert('User updated')
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+
     return (
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -32,13 +49,14 @@ function ProfileCard() {
             </Form.Group>
             <Form.Group className="mb-3 w-50">
               <Form.Label>User Name</Form.Label>
-              <Form.Control type="text" defaultValue={userDetails.userName} />
+              <Form.Control type="text" defaultValue={userDetails.userName} disabled />
             </Form.Group>
             <Form.Group className="mb-3 w-50">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
                 defaultValue={userDetails.userFirstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3 w-50">
@@ -46,8 +64,10 @@ function ProfileCard() {
               <Form.Control
                 type="text"
                 defaultValue={userDetails.userLastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
+            <Button onClick={handleEditClick}>Submit</Button>
           </Form>
         </Modal.Header>
       </Modal>
@@ -135,9 +155,9 @@ function ProfileCard() {
               disabled
             />
           </Form.Group>
-          <div>
+          <div className="d-flex flex-column">
             <Button onClick={handleClick}>Edit details</Button>
-            <Button onClick={handlePwdClick}>Change Password</Button>
+            <Button className="mt-3" onClick={handlePwdClick}>Change Password</Button>
           </div>
         </Form>
       )}

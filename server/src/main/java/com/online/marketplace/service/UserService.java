@@ -88,8 +88,6 @@ public class UserService {
         usert.setUserName(user.getUserName());
         usert.setUserFirstName(user.getUserFirstName());
         usert.setUserLastName(user.getUserLastName());
-        usert.setWallet(user.getWallet());
-        usert.setUserPassword(getEncodedPassword(user.getUserPassword()));
         return userDao.save(usert);
     }
 
