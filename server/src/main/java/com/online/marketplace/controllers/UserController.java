@@ -52,6 +52,12 @@ public class UserController {
         return userService.editUserDetails(user);
     }
 
+    @PutMapping({"/editUserPassword"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public User editUserPassword(@RequestBody User user) {
+        return userService.editUserPassword(user);
+    }
+
     @DeleteMapping({"/deleteUserDetails/{userName}"})
     @CrossOrigin(origins = "http://localhost:3000")
     public void deleteUserDetails(@PathVariable("userName") String userName){
@@ -62,5 +68,10 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     public void deleteManagerDetails(@PathVariable("userName") String userName){
         userService.deleteManagerDetails(userName);
+    }
+
+    @GetMapping({"/getUserById/{userName}"})
+    public User getUserById(@PathVariable("userName") String userName) {
+        return userService.getUserById(userName);
     }
 }

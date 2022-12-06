@@ -120,19 +120,35 @@ function ProductDetails() {
                 </Form.Group>
                 <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
                   <Form.Label>Product Name</Form.Label>
-                  <Form.Control type="text" placeholder="" defaultValue={currentProduct.productName} />
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    defaultValue={currentProduct.productName}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3 w-50" controlId="formBasicPassword">
                   <Form.Label>Product Description</Form.Label>
-                  <Form.Control as="textarea" placeholder="" defaultValue={currentProduct.productDescription} />
+                  <Form.Control
+                    as="textarea"
+                    placeholder=""
+                    defaultValue={currentProduct.productDescription}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
                   <Form.Label>Product Price</Form.Label>
-                  <Form.Control type="text" placeholder="" defaultValue={currentProduct.productActualPrice} />
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    defaultValue={currentProduct.productActualPrice}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
                   <Form.Label>Discounted Price (if any)</Form.Label>
-                  <Form.Control type="text" placeholder="" defaultValue={currentProduct.productDiscountedPrice} />
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    defaultValue={currentProduct.productDiscountedPrice}
+                  />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Submit

@@ -1,10 +1,12 @@
 import React from 'react';
 import DashboardNav from '../components/navs/DashboardNav';
+import ProfileCard from '../components/dashboard/ProfileCard';
 
-function Profile(props) {
+function Profile() {
   return (
     <>
-      <DashboardNav searchShown={false} />
+      <DashboardNav />
+      <ProfileCard />
     </>
   );
 }

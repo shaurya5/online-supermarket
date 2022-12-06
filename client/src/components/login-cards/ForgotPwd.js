@@ -6,6 +6,7 @@ import axios from "axios";
 
 function ForgotPwd() {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("")
 
   function generateRandomPassword(length) {
     var result = "";
@@ -21,17 +22,18 @@ function ForgotPwd() {
   async function handleClick(e) {
     e.preventDefault();
     const new_password = generateRandomPassword(10);
-    // emailjs.send(
-    //   "service_zo6gucq",
-    //   "template_og6jr4o",
-    //   {
-    //     new_password,
-    //     user_email: email
-    //   },
-    //   "ITZ1kNWi5iduyLDxv"
-    // );
+    emailjs.send(
+      "service_zo6gucq",
+      "template_og6jr4o",
+      {
+        new_password,
+        user_email: email
+      },
+      "ITZ1kNWi5iduyLDxv"
+    );
 
-    const request = await axios.put('http://localhost:8080/editUserDetails', {
+    const request = await axios.put('http://localhost:8080/editUserPassword', {
+      userName: username,
       userPassword: new_password
     })
   }
@@ -53,7 +55,16 @@ function ForgotPwd() {
               placeholder="Enter email"
               onChange={(event) => setEmail(event.target.value)}
             />
-
+            <label>User Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="EmailInput"
+              name="user_email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              onChange={(event) => setUsername(event.target.value)}
+            />
             <button onClick={handleClick} className="btn btn-primary mt-3">
               Submit
             </button>

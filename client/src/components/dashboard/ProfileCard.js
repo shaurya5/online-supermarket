@@ -1,10 +1,149 @@
-import React from 'react';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Form, Button, Modal } from "react-bootstrap";
 
 function ProfileCard() {
+  const [userDetails, setUserDetails] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [showPwdModal, setShowPwdModal] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const username = localStorage.getItem("username");
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/getUserById/${username}`
+        );
+        setUserDetails(response.data);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
+  function ModalComponent() {
+    return (
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Form className="w-100 mt-4 d-flex flex-column justify-content-center align-items-center">
+            <Form.Group className="mb-3 w-50">
+              <h3>Edit Details</h3>
+            </Form.Group>
+            <Form.Group className="mb-3 w-50">
+              <Form.Label>User Name</Form.Label>
+              <Form.Control type="text" defaultValue={userDetails.userName} />
+            </Form.Group>
+            <Form.Group className="mb-3 w-50">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                defaultValue={userDetails.userFirstName}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 w-50">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                defaultValue={userDetails.userLastName}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Header>
+      </Modal>
+    );
+  }
+
+  function PasswordModal() {
+    const [password, setPassword] = useState("")
+
+    async function handlePwdChange() {
+      try {
+        const request = await axios.put('http://localhost:8080/editUserPassword', {
+          userName: localStorage.getItem('username'),
+          userPassword: password
+        })
+        alert('Password changed successfully!');
+      }
+      catch(err) {
+        console.log(err)
+      }
+    } 
+
+    return (
+      <Modal show={showPwdModal} onHide={handlePwdClose}>
+        <Modal.Header closeButton>
+          <Form className="w-100 mt-4 d-flex flex-column justify-content-center align-items-center">
+            <Form.Group>
+              <Form.Label>New Password</Form.Label>
+              <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Confirm New Password</Form.Label>
+              <Form.Control type="password" />
+            </Form.Group>
+            <Button onClick={handlePwdChange}>Submit</Button>
+          </Form>
+        </Modal.Header>
+      </Modal>
+    );
+  }
+
+  function handleClick() {
+    setShowModal(true);
+  }
+
+  function handlePwdClick() {
+    setShowPwdModal(true);
+  }
+
+  function handleClose() {
+    setShowModal(false);
+  }
+
+  function handlePwdClose() {
+    setShowPwdModal(false);
+  }
+
   return (
-    <>
-      
-    </>
+    <div>
+      {Object.keys(userDetails).length === 0 ? (
+        <div>Loading...</div>
+      ) : (
+        <Form className="w-100 mt-5 d-flex flex-column flex-start justify-content-center align-items-center">
+          <Form.Group className="mb-3">
+            <Form.Label>User Name</Form.Label>
+            <Form.Control
+              type="text"
+              defaultValue={userDetails.userName}
+              disabled
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              type="text"
+              defaultValue={userDetails.userFirstName}
+              disabled
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              type="text"
+              defaultValue={userDetails.userLastName}
+              disabled
+            />
+          </Form.Group>
+          <div>
+            <Button onClick={handleClick}>Edit details</Button>
+            <Button onClick={handlePwdClick}>Change Password</Button>
+          </div>
+        </Form>
+      )}
+      <ModalComponent />
+      <PasswordModal />
+    </div>
   );
 }
 

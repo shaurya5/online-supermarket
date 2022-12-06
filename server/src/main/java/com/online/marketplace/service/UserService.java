@@ -85,12 +85,23 @@ public class UserService {
     public User editUserDetails(User user) {
         String userName = user.getUserName();
         User usert = userDao.findById(userName).get();
-//        usert.setUserName(user.getUserName());
-//        usert.setUserFirstName(user.getUserFirstName());
-//        usert.setUserLastName(user.getUserLastName());
-//        usert.setWallet(user.getWallet());
+        usert.setUserName(user.getUserName());
+        usert.setUserFirstName(user.getUserFirstName());
+        usert.setUserLastName(user.getUserLastName());
+        usert.setWallet(user.getWallet());
         usert.setUserPassword(getEncodedPassword(user.getUserPassword()));
         return userDao.save(usert);
+    }
+
+    public User editUserPassword(User user) {
+        String userName = user.getUserName();
+        User usert = userDao.findById(userName).get();
+        usert.setUserPassword(getEncodedPassword(user.getUserPassword()));
+        return userDao.save(usert);
+    }
+
+    public User getUserById(String userName){
+        return userDao.findById(userName).get();
     }
 
     public void deleteUserDetails(String userName){
