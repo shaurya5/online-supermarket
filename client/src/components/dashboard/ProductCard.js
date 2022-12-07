@@ -31,8 +31,8 @@ function ProductCard({
   }
 
   return (
-    <Card style={{ width: "15rem" }}>
-      <Card.Img variant="top" src={productPhoto} />
+    <Card style={{ width: "15rem" }} className="shadow">
+      <Card.Img variant="top" src={productPhoto} width={300} height={200} />
       <Card.Body>
         <Card.Title>{productName}</Card.Title>
         <Card.Text>Price: {productPrice}</Card.Text>

@@ -101,6 +101,7 @@ function ProfileCard() {
             <Form.Group>
               <Form.Label>Confirm New Password</Form.Label>
               <Form.Control type="password" />
+              <br/>
             </Form.Group>
             <Button onClick={handlePwdChange}>Submit</Button>
           </Form>
@@ -129,20 +130,22 @@ function ProfileCard() {
 
     return (
       <div>
-        <Form className="w-25 mt-5 d-flex flex-column flex-start justify-content-center align-items-center border">
+        <Form className="shadow-lg rounded w-25 mt-5 p-2 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray">
           <Form.Group>
             <h3>Top Up Wallet</h3>
             <h4>Current balance: {userDetails.wallet}</h4>
           </Form.Group>
           <Form.Group>
             <Form.Label>Enter amount to add to wallet</Form.Label>
+            <br/>
             <Form.Control
               type="text"
               value={wallet}
               onChange={(e) => setWallet(e.target.value)}
             />
           </Form.Group>
-          <Button onClick={handleClick}>Add</Button>
+          
+          <Button className="mt-1" onClick={handleClick}>Add</Button>
         </Form>
       </div>
     )
@@ -165,11 +168,11 @@ function ProfileCard() {
   }
 
   return (
-    <div>
+    <div class="p-4 mb-10"  >
       {Object.keys(userDetails).length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <Form className="w-25 mt-5 d-flex flex-column flex-start justify-content-center align-items-center border">
+        <Form className="shadow-lg rounded p-4 w-25 mt-10 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray ">
           <Form.Group className="mb-3">
             <Form.Label>User Name</Form.Label>
             <Form.Control

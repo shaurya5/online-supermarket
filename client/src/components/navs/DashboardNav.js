@@ -8,16 +8,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function DashboardNav() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleLogout() {
-    localStorage.removeItem('role')
-    localStorage.removeItem('token')
-    navigate('/login')
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+    navigate("/login");
   }
 
   return (
-    <Navbar bg="secondary" expand="lg">
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-light border navbar-static-top shadow-sm">
       <Container className="nav-container">
         <div>
           <Navbar.Brand className="link-text" href="/dashboard">
@@ -32,7 +32,13 @@ function DashboardNav() {
                 My Profile
               </Nav.Link>
               <Nav.Link className="link-text" href="/cart">
-                My cart
+                <div className="position-relative">
+                  My cart
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {JSON.parse(localStorage.getItem("cartProds")).length}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </div>
               </Nav.Link>
               <Nav.Link className="link-text" href="#" onClick={handleLogout}>
                 Logout
