@@ -48,7 +48,8 @@ function Dashboard() {
               <div key={index} className="m-3">
                 <ProductCard
                   productName={product.productName}
-                  productPrice={product.productActualPrice}
+                  productActualPrice={product.productActualPrice}
+                  productDiscountedPrice={product.productDiscountedPrice}
                   productPhoto={product.productImage}
                   productId={product.productID}
                 />

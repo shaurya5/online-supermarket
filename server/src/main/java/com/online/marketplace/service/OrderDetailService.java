@@ -8,6 +8,8 @@ import com.online.marketplace.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -41,6 +43,8 @@ public class OrderDetailService {
         List<OrderProductQuantity> productQuantityList = orderInput.getOrderProductQuantityList();
        // List<OrderDetail> ordersList = new ArrayList<>();
         String invoiceNumber = generateInvoiceNumber(15);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
 
         for(OrderProductQuantity o: productQuantityList){
             Product product = productDao.findById(o.getProductId()).get();
@@ -57,7 +61,8 @@ public class OrderDetailService {
                     product.getProductDiscountedPrice()*o.getQuantity(),
                     product,
                     user,
-                    invoiceNumber
+                    invoiceNumber,
+                    dtf.format(now)
             );
            // ordersList.add(orderDetail);
             orderDetailDao.save(orderDetail);
