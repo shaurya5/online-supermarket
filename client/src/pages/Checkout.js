@@ -29,14 +29,14 @@ function OrderSummary() {
   }, [])
 
   return (
-    <div>
-      <h4>Order Summary</h4>
-      <table className="w-75 table table-striped table-hover table-bordered">
+    <div className="row g-3 mt-5 pl-2 mx-4 border border-2 shadow p-2 rounded" style={{ width: "60vw" }}>
+      <h3 className="mx-5 px-5">Order Summary</h3>
+      <table className="mx-5 table table-striped table-hover table-bordered" style={{ width: "40vw" }}>
         <thead>
           <tr>
             <th>S.No.</th>
             <th>Product Name</th>
-            <th width="14%">Product Price</th>
+            <th width="25%">Product Price</th>
             <th width="5%">Quantity</th>
             <th>Price</th>
           </tr>
@@ -61,9 +61,9 @@ function OrderSummary() {
 
 function UserForm() {
   return (
-    <div>
-      <form className="row g-3 w-50 border border-2">
-        <h4>Enter your details</h4>
+    <div className="pl-2 mx-5" style={{ width: "40vw" }}>
+      <form className="row g-5 mt-5 border border-2 shadow p-3 rounded " style={{ width: "35vw" }}>
+        <h3>Enter your details</h3>
         <div className="col-md-6">
           <label htmlFor="inputName" className="form-label">
             Full Name
@@ -99,9 +99,9 @@ function UserForm() {
 }
 function Checkout() {
   return (
-    <div className="d-flex flex-row w-screen justify-content-center">
-      <OrderSummary />
+    <div className="d-flex flex-row w-screen justify-content-center"> 
       <UserForm />
+      <OrderSummary />
     </div>
   );
 }
