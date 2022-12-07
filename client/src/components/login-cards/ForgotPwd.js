@@ -41,9 +41,9 @@ function ForgotPwd() {
   return (
     <>
       <NavigationBar />
-      <div className={styles.container}>
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-4 border border-secondary p-3 rounded">
+      <div className="container">
+        <div className="row d-flex justify-content-center my-5">
+          <div className="col-md-4 border border-secondary p-3 rounded my-5 shadow-lg">
             <h4 className="text-center">Forgot Password</h4>
             <label>Email address</label>
             <input

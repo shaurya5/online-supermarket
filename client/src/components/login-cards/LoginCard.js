@@ -3,6 +3,7 @@ import styles from "../../styles/loginCard.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 function LoginCard() {
   const [userPassword, setPassword] = useState("");
   const [userName, setUserName] = useState("");
@@ -64,11 +65,12 @@ function LoginCard() {
       console.log(err);
     }
   };
+  // style={{backgroundImage: require(ecombg)}}
 
   return (
-    <div className={styles.container}>
-      <div className="row d-flex justify-content-center">
-        <div className="col-md-4 border border-secondary p-3 rounded">
+    <div className="container" style={{backgroundImage: "linear-gradient(to right top, #637898, #009bc3, #00bfbf, #00db86, #a8eb12)",width:"110000px",height:"93.8vh",padding:"0"}}> 
+      <div className="row d-flex justify-content-center align-items-center">
+        <div className="col-md-4 border border-secondary p-3 rounded shadow-lg bg-light my-5">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
               <h4 className="text-center">User Login</h4>

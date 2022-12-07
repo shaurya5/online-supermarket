@@ -129,7 +129,7 @@ function ProfileCard() {
     }
 
     return (
-      <div >
+      <div>
         <Form className="shadow-lg rounded w-25 mt-5 mx-5 p-2 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray mx-5">
           <Form.Group>
             <h3>Top Up Wallet</h3>
