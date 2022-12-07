@@ -57,12 +57,14 @@ public class OrderDetailService {
                     orderInput.getFullAddress(),
                     orderInput.getContactNumber(),
                     orderInput.getAlternateContactNumber(),
+                    orderInput.getZipcode(),
                     ORDER_PLACED,
                     product.getProductDiscountedPrice() * o.getQuantity(),
                     product,
                     user,
                     invoiceNumber,
                     dtf.format(now)
+
             );
            // ordersList.add(orderDetail);
             orderDetailDao.save(orderDetail);
