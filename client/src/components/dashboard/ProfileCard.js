@@ -168,7 +168,7 @@ function ProfileCard() {
   }
 
   return (
-    <div class="p-4 mb-10"  >
+    <div className="p-4 mb-10"  >
       {Object.keys(userDetails).length === 0 ? (
         <div>Loading...</div>
       ) : (

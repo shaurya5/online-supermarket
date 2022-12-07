@@ -36,13 +36,13 @@ function ProductDetails() {
   }
 
   return (
-    <>
+    <div className="text-center d-flex flex-column">
       <h2></h2>
       <table className="w-75 table table-striped table-hover table-bordered" ref={tableRef}>
         <thead>
           <tr>
-            <th>S.No.</th>
-            <th>Product Name</th>
+            <th width="5%">S.No.</th>
+            <th width="">Product Name</th>
             <th width="14%">Product Actual Price</th>
             <th width="17%">Product Discounted Price</th>
             <th width="5%">Quantity</th>
@@ -52,7 +52,7 @@ function ProductDetails() {
           {products.map((product, index) => {
             return (
               <tr key={index}>
-                <td>{index + 1}</td>
+                <td>{index + 1}.</td>
                 <td>{product.productName}</td>
                 <td>{product.productActualPrice}</td>
                 <td>{product.productDiscountedPrice}</td>
@@ -65,8 +65,8 @@ function ProductDetails() {
           })}
         </tbody>
       </table>
-      <Button onClick={handleClick}>Checkout</Button>
-    </>
+      <Button className="w-25" onClick={handleClick}>Checkout</Button>
+    </div>
   );
 }
 

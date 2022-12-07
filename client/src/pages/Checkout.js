@@ -19,11 +19,13 @@ function OrderSummary() {
       }
       // console.log(finalProd)
       newProduct.quantity = finalProduct.quantity
-      newProduct.totalPrice = parseInt(finalProduct.quantity) * parseInt(finalProduct.productDiscountedPrice) 
+      newProduct.totalPrice = parseInt(newProduct.quantity) * parseInt(newProduct.productDiscountedPrice) 
+      // console.log(finalProduct)
       temp.push(newProduct)
     })
 
     setNewProductList(temp)
+    console.log(temp)
   }, [])
 
   return (
@@ -45,7 +47,7 @@ function OrderSummary() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{product.productName}</td>
-                <td>{product.productDiscounted}</td>
+                <td>{product.productDiscountedPrice}</td>
                 <td>{product.quantity}</td>
                 <td>{product.totalPrice}</td>
               </tr>
@@ -63,25 +65,25 @@ function UserForm() {
       <form className="row g-3 w-50 border border-2">
         <h4>Enter your details</h4>
         <div className="col-md-6">
-          <label for="inputName" className="form-label">
+          <label htmlFor="inputName" className="form-label">
             Full Name
           </label>
           <input type="text" className="form-control" id="inputName" />
         </div>
         <div className="col-12">
-          <label for="inputAddress" className="form-label">
+          <label htmlFor="inputAddress" className="form-label">
             Full Address
           </label>
           <input type="text" className="form-control" id="inputAddress" />
         </div>
         <div className="col-md-6">
-          <label for="inputPhone" className="form-label">
+          <label htmlFor="inputPhone" className="form-label">
             Phone Number
           </label>
           <input type="phone" className="form-control" id="inputPhone" />
         </div>
         <div className="col-md-6">
-          <label for="inputPhone" className="form-label">
+          <label htmlFor="inputPhone" className="form-label">
             Alternate Phone Number
           </label>
           <input type="phone" className="form-control" id="inputPhone" />

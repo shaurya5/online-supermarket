@@ -34,9 +34,9 @@ function DashboardNav() {
               <Nav.Link className="link-text" href="/cart">
                 <div className="position-relative">
                   My cart
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {JSON.parse(localStorage.getItem("cartProds")).length}
-                    <span class="visually-hidden">unread messages</span>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {JSON.parse(localStorage.getItem("cartProds") || "[]").length}
+                    <span className="visually-hidden">unread messages</span>
                   </span>
                 </div>
               </Nav.Link>
