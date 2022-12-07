@@ -13,6 +13,7 @@ import AddProducts from "./pages/AddProducts";
 import AddManager from "./pages/AddManager";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductDetails from "./pages/ProductDetails";
+import Checkout from "./pages/Checkout";
 
 function AllRoutes() {
   return (
@@ -33,6 +34,7 @@ function AllRoutes() {
         <Route path="/add-manager" element={<AddManager />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/edit-products" element={<ProductDetails />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/*" element={<InvalidRoute />} />
       </Routes>
     </Router>

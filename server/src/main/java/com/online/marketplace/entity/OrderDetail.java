@@ -35,7 +35,7 @@ public class OrderDetail {
         this.product = product;
         this.user = user;
         this.invoiceNumber = invoiceNumber;
-        this.timestamp=timestamp;
+        this.timestamp = timestamp;
     }
 
     public OrderDetail() {

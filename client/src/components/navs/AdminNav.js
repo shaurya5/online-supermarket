@@ -11,6 +11,7 @@ function AdminNav() {
   function handleLogout() {
     localStorage.removeItem('role')
     localStorage.removeItem('token')
+    localStorage.removeItem('username')
     navigate('/login')
   }
 
@@ -18,7 +19,7 @@ function AdminNav() {
     <Navbar bg="secondary" expand="lg">
       <Container className="nav-container">
         <div>
-          <Navbar.Brand className="link-text" href="/dashboard">
+          <Navbar.Brand className="link-text">
             Online Supermarket
           </Navbar.Brand>
         </div>

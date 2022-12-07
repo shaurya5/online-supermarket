@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import cart from "../../assets/cart.jpg";
 import Button from "react-bootstrap/Button";
@@ -7,18 +7,37 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function ProductCard({
   productPhoto = cart,
   productName,
-  productPrice,
+  productActualPrice,
+  productDiscountedPrice,
   productId,
 }) {
+
+  // const [added, setAdded] = useState(false)
+
+  // useEffect(() => {
+  //   const productDetails = {
+  //     productName,
+  //     productDiscountedPrice,
+  //     productId,
+  //     productActualPrice
+  //   };
+  //   let cartProducts = JSON.parse(localStorage.getItem("cartProds") || "[]");
+  //   if(cartProducts.contains(productDetails)) {
+  //     setAdded(true)
+  //   }
+  // }, [])
+
   function handleClick(e) {
     e.preventDefault();
     let cardProducts = JSON.parse(localStorage.getItem("cartProds") || "[]");
     const productId = e.target.firstElementChild.innerText;
     const productDetails = {
       productName,
-      productPrice,
+      productDiscountedPrice,
       productId,
+      productActualPrice
     };
+
     cardProducts.push(productDetails);
     console.log(e)
     e.target.firstChild.textContent = (e.target.firstChild.textContent === "Add to cart ") ? "Remove from cart " : "Add to cart "
@@ -27,6 +46,8 @@ function ProductCard({
         return product.productId !== productId
       })
     }
+
+    // e.target.firstChild.textContent = added ? "Remove from cart " : "Add to cart "
     localStorage.setItem("cartProds", JSON.stringify(cardProducts));
   }
 
@@ -35,7 +56,7 @@ function ProductCard({
       <Card.Img variant="top" src={productPhoto} width={300} height={200} />
       <Card.Body>
         <Card.Title>{productName}</Card.Title>
-        <Card.Text>Price: {productPrice}</Card.Text>
+        <Card.Text>Price: <s>{productActualPrice}</s> {productDiscountedPrice}</Card.Text>
         <Button onClick={handleClick}>
           Add to cart <div className="d-none">{productId}</div>
         </Button>
