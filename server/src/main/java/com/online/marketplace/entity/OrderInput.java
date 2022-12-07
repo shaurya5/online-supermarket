@@ -7,6 +7,16 @@ public class  OrderInput {
     private String fullAddress;
     private String contactNumber;
     private String alternateContactNumber;
+    private int zipcode;
+
+    public int getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
+    }
+
     private List<OrderProductQuantity> orderProductQuantityList;
 
     public String getFullName() {
