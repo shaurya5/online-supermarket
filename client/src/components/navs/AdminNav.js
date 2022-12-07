@@ -12,6 +12,8 @@ function AdminNav() {
     localStorage.removeItem('role')
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+    localStorage.removeItem('finalProds')
+    localStorage.removeItem('cartProds')
     navigate('/login')
   }
 

@@ -62,7 +62,7 @@ function ForgotPwd() {
               id="EmailInput"
               name="user_email"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter username"
               onChange={(event) => setUsername(event.target.value)}
             />
             <button onClick={handleClick} className="btn btn-primary mt-3">

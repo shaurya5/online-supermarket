@@ -11,7 +11,6 @@ function ProductCard({
   productDiscountedPrice,
   productId,
 }) {
-
   // const [added, setAdded] = useState(false)
 
   // useEffect(() => {
@@ -35,16 +34,19 @@ function ProductCard({
       productName,
       productDiscountedPrice,
       productId,
-      productActualPrice
+      productActualPrice,
     };
 
     cardProducts.push(productDetails);
-    console.log(e)
-    e.target.firstChild.textContent = (e.target.firstChild.textContent === "Add to cart ") ? "Remove from cart " : "Add to cart "
-    if(e.target.firstChild.textContent === 'Add to cart ') {
+    console.log(e);
+    e.target.firstChild.textContent =
+      e.target.firstChild.textContent === "Add to cart "
+        ? "Remove from cart "
+        : "Add to cart ";
+    if (e.target.firstChild.textContent === "Add to cart ") {
       cardProducts = cardProducts.filter((product) => {
-        return product.productId !== productId
-      })
+        return product.productId !== productId;
+      });
     }
 
     // e.target.firstChild.textContent = added ? "Remove from cart " : "Add to cart "
@@ -56,7 +58,16 @@ function ProductCard({
       <Card.Img variant="top" src={productPhoto} width={300} height={200} />
       <Card.Body>
         <Card.Title>{productName}</Card.Title>
-        <Card.Text>Price: <s>{productActualPrice}</s> {productDiscountedPrice}</Card.Text>
+        {productDiscountedPrice ? (
+          <>
+            <Card.Text>
+              Price:{" "}
+              <s>{productActualPrice}</s> {productDiscountedPrice}
+            </Card.Text>
+          </>
+        ) : (
+          <Card.Text>Price: {productActualPrice}</Card.Text>
+        )}
         <Button onClick={handleClick}>
           Add to cart <div className="d-none">{productId}</div>
         </Button>
