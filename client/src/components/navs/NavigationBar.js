@@ -6,7 +6,7 @@ import "../../styles/navbar.css";
 
 function NavigationBar() {
   return (
-    <Navbar bg="secondary" expand="lg">
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-light border navbar-static-top shadow-sm">
       <Container className="nav-container">
         <div>
           <Navbar.Brand className="link-text" href="/">Online Supermarket</Navbar.Brand>

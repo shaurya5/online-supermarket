@@ -16,7 +16,7 @@ function AdminNav() {
   }
 
   return (
-    <Navbar bg="secondary" expand="lg">
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-light border navbar-static-top shadow-sm">
       <Container className="nav-container">
         <div>
           <Navbar.Brand className="link-text">

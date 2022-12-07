@@ -129,8 +129,8 @@ function ProfileCard() {
     }
 
     return (
-      <div>
-        <Form className="shadow-lg rounded w-25 mt-5 p-2 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray">
+      <div >
+        <Form className="shadow-lg rounded w-25 mt-5 mx-5 p-2 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray mx-5">
           <Form.Group>
             <h3>Top Up Wallet</h3>
             <h4>Current balance: {userDetails.wallet}</h4>
@@ -172,7 +172,7 @@ function ProfileCard() {
       {Object.keys(userDetails).length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <Form className="shadow-lg rounded p-4 w-25 mt-10 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray ">
+        <Form className="shadow-lg rounded p-4 w-25 mt-10 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray mx-5 ">
           <Form.Group className="mb-3">
             <Form.Label>User Name</Form.Label>
             <Form.Control
