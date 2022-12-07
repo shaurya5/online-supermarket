@@ -11,20 +11,6 @@ function ProductCard({
   productDiscountedPrice,
   productId,
 }) {
-  // const [added, setAdded] = useState(false)
-
-  // useEffect(() => {
-  //   const productDetails = {
-  //     productName,
-  //     productDiscountedPrice,
-  //     productId,
-  //     productActualPrice
-  //   };
-  //   let cartProducts = JSON.parse(localStorage.getItem("cartProds") || "[]");
-  //   if(cartProducts.contains(productDetails)) {
-  //     setAdded(true)
-  //   }
-  // }, [])
 
   function handleClick(e) {
     e.preventDefault();
@@ -49,7 +35,6 @@ function ProductCard({
       });
     }
 
-    // e.target.firstChild.textContent = added ? "Remove from cart " : "Add to cart "
     localStorage.setItem("cartProds", JSON.stringify(cardProducts));
   }
 

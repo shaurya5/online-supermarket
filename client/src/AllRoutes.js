@@ -14,6 +14,7 @@ import AddManager from "./pages/AddManager";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
+import OrderPlaced from "./pages/OrderPlaced";
 
 function AllRoutes() {
   return (
@@ -35,6 +36,7 @@ function AllRoutes() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/edit-products" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-placed" element={<OrderPlaced />} />
         <Route path="/*" element={<InvalidRoute />} />
       </Routes>
     </Router>

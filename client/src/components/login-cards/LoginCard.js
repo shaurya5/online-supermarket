@@ -68,7 +68,7 @@ function LoginCard() {
   // style={{backgroundImage: require(ecombg)}}
 
   return (
-    <div className="container" style={{backgroundImage: "linear-gradient(to right top, #637898, #009bc3, #00bfbf, #00db86, #a8eb12)",width:"110000px",height:"93.8vh",padding:"0"}}> 
+    <div className="container" style={{backgroundImage: "linear-gradient(to right top, #637898, #009bc3, #00bfbf, #00db86, #a8eb12)",width:"100vw",height:"92vh",padding:"0"}}> 
       <div className="row d-flex justify-content-center align-items-center">
         <div className="col-md-4 border border-secondary p-3 rounded shadow-lg bg-light my-5">
           <form id="loginform" onSubmit={loginSubmit}>
