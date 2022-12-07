@@ -1,21 +1,16 @@
 import { Button } from "react-bootstrap";
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProductDetails() {
   const products = JSON.parse(localStorage.getItem("cartProds") || "[]");
   const tableRef = useRef(null)
   const [finalProducts, setFinalProducts] = useState([])
-
-  function calculateTotalPrice() {
-    let totalPrice = 0;
-    products.map((product) => {
-      totalPrice += parseInt(product.productPrice);
-    });
-    return totalPrice;
-  }
+  const navigate = useNavigate()
 
   async function handleClick(e) {
     e.preventDefault();
+    setFinalProducts([])
     console.log(tableRef)
     let productId, quantity;
 
@@ -34,8 +29,10 @@ function ProductDetails() {
       }
       finalProducts.push(product)
     }))
+
     console.log(finalProducts)
-    localStorage.setItem('finalProds', finalProducts)
+    localStorage.setItem('finalProds', JSON.stringify(finalProducts))
+    navigate('/checkout')
   }
 
   return (
@@ -49,7 +46,6 @@ function ProductDetails() {
             <th width="14%">Product Actual Price</th>
             <th width="17%">Product Discounted Price</th>
             <th width="5%">Quantity</th>
-            {/* <th>Price</th> */}
           </tr>
         </thead>
         <tbody>
@@ -61,10 +57,9 @@ function ProductDetails() {
                 <td>{product.productActualPrice}</td>
                 <td>{product.productDiscountedPrice}</td>
                 <td>
-                  <input type="number" defaultValue="1" id="quantityInput" />
-                  <div className="">{product.productId}</div>
+                  <input type="number" defaultValue="1" id="quantityInput" min={1}/>
+                  <div className="d-none">{product.productId}</div>
                 </td>
-                {/* <td>{product.productDiscountedPrice}</td> */}
               </tr>
             );
           })}

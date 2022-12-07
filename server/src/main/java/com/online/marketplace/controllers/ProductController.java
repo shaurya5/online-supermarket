@@ -27,11 +27,13 @@ public class ProductController {
     }
 
     @GetMapping({"/getProductDetailsById/{productId}"})
+    @CrossOrigin(origins = "http://localhost:3000")
     public Product getProductDetailsById(@PathVariable("productId") Integer productId){
         return productService.getProductDetailsById(productId);
     }
 
     @GetMapping({"/getAllProducts"})
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
@@ -49,6 +51,7 @@ public class ProductController {
     }
 
     @GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Product> getProductDetails(@PathVariable(name = "isSingleProductCheckout") boolean isSingleProductCheckout,
                                            @PathVariable(name = "productId") Integer productId){
         return productService.getProductDetails(isSingleProductCheckout, productId);
