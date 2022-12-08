@@ -60,6 +60,7 @@ public class OrderDetailService {
                     orderInput.getZipcode(),
                     ORDER_PLACED,
                     product.getProductDiscountedPrice() * o.getQuantity(),
+                    o.getQuantity(),
                     product,
                     user,
                     invoiceNumber,

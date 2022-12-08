@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class  OrderDetailController {
 
- @Autowired
- private OrderDetailService orderDetailService;
+    @Autowired
+    private OrderDetailService orderDetailService;
 
- // @PreAuthorize("hasRole('User')")
- @PostMapping({"/placeOrder"})
- @CrossOrigin(origins = "http://localhost:3000")
-    public void placeOrder(@RequestBody OrderInput orderInput){
-     orderDetailService.placeOrder(orderInput);
-
- }
+    // @PreAuthorize("hasRole('User')")
+    @PostMapping({"/placeOrder"})
+    @CrossOrigin(origins = "http://localhost:3000")
+    public void placeOrder(@RequestBody OrderInput orderInput){ orderDetailService.placeOrder(orderInput); }
 }

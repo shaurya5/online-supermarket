@@ -117,6 +117,10 @@ function ProfileCard() {
     async function handleClick(e) {
       e.preventDefault()
       try {
+        if(wallet <= 0) {
+          alert('Enter a positive number to add!')
+          return
+        }
         const request = await axios.put('http://localhost:8080/topupWallet', {
           userName: localStorage.getItem('username'),
           wallet: parseInt(wallet) + parseInt(currentWallet)
@@ -141,7 +145,7 @@ function ProfileCard() {
             <Form.Control
               type="text"
               value={wallet}
-              onChange={(e) => setWallet(e.target.value)}
+              onChange={(e) => {setWallet(e.target.value)}}
             />
           </Form.Group>
           
