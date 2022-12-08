@@ -6,7 +6,7 @@ function AdminLogin() {
   return (
     <>
       <NavigationBar />
-      <AdminLoginCard />
+      <ManagerLoginCard />
     </>
   );
 }
