@@ -8,7 +8,7 @@ function OrderSummary() {
   const finalProducts = JSON.parse(localStorage.getItem("finalProds"));
   const products = JSON.parse(localStorage.getItem("cartProds"));
   const [newProductList, setNewProductList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);  
 
   useEffect(() => {
     const temp = [];
@@ -204,6 +204,14 @@ function UserForm() {
   );
 }
 function Checkout() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem("role") || !localStorage.getItem("token")) {
+      navigate("/auth-error");
+    }
+  }, []);
+
   return (
     <div className="w-screen justify-content-center">
       <DashboardNav />
