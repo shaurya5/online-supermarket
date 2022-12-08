@@ -10,11 +10,13 @@ import Cart from "./pages/Cart";
 import AuthenticationError from "./pages/AuthenticationError";
 import InvalidRoute from "./pages/InvalidRoute";
 import AddProducts from "./pages/AddProducts";
-import AddManager from "./pages/AddManager";
+import EditManager from "./pages/EditManager";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import OrderPlaced from "./pages/OrderPlaced";
+import EditUsers from "./pages/EditUsers";
+import ManagerLogin from './pages/ManagerLogin'
 
 function AllRoutes() {
   return (
@@ -24,7 +26,7 @@ function AllRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/manager-login" element={<AddManager />} />
+        <Route path="/manager-login" element={<ManagerLogin />} />
         <Route path="/forgot-pwd" element={<ForgotPwd />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
@@ -32,11 +34,12 @@ function AllRoutes() {
         <Route path="/add-products" element={<AddProducts />} />
         <Route path="/auth-error" element={<AuthenticationError />} />
         <Route path="/add-products" element={<AddProducts />} />
-        <Route path="/add-manager" element={<AddManager />} />
+        <Route path="/edit-managers" element={<EditManager />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/edit-products" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-placed" element={<OrderPlaced />} />
+        <Route path="/edit-users" element={<EditUsers />} />
         <Route path="/*" element={<InvalidRoute />} />
       </Routes>
     </Router>

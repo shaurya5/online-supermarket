@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import styles from "../styles/loginCard.module.css";
 
-function AddManager() {
+function AddUser() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
@@ -74,7 +74,7 @@ function AddManager() {
       <div className="row d-flex justify-content-center">
         <div className="col-md-4 border border-secondary p-3 rounded">
           <form id="loginform">
-            <h4 className="text-center">Add Manager</h4>
+            <h4 className="text-center">Add User</h4>
             <div className="form-group">
               <label>First Name</label>
               <input
@@ -158,4 +158,4 @@ function AddManager() {
   );
 }
 
-export default AddManager;
+export default AddUser;

@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/navbar.css"; 
 import { useNavigate } from "react-router-dom";
 
-function AdminNav() {
+function ManagerNav() {
   const navigate = useNavigate()
 
   function handleLogout() {
@@ -38,8 +38,8 @@ function AdminNav() {
               <Nav.Link className="link-text" href="/edit-users">
                 Edit Users
               </Nav.Link>
-              <Nav.Link className="link-text" href="/edit-managers">
-                Edit Managers
+              <Nav.Link className="link-text" href="/add-manager">
+                Add Manager
               </Nav.Link>
               <Nav.Link className="link-text" href="#" onClick={handleLogout}>
                 Logout
@@ -52,4 +52,4 @@ function AdminNav() {
   );
 }
 
-export default AdminNav;
+export default ManagerNav;

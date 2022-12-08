@@ -48,7 +48,7 @@ function AdminLoginCard() {
       if(response.data.user.role[0].name === "admin") {
         localStorage.setItem('role', 'admin');
         localStorage.setItem('token', response.data.jwtToken)
-        navigate('/admin-dashboard')
+        navigate('/add-products')
       }
       else {
         console.log("Authentication error!")

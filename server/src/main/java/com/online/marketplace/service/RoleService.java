@@ -14,4 +14,5 @@ public class RoleService {
     public Role createNewRole(Role role) {
         return roleDao.save(role);
     }
+
 }

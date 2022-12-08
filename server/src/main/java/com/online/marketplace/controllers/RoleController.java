@@ -2,10 +2,7 @@ package com.online.marketplace.controllers;
 import com.online.marketplace.entity.Role;
 import com.online.marketplace.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RoleController {
@@ -18,4 +15,5 @@ public class RoleController {
     public Role createNewRole(@RequestBody Role role) {
         return roleService.createNewRole(role);
     }
+    
 }
