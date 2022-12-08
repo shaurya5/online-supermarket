@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Confetti from 'react-confetti'
+import {useWindowSize} from 'react-use';
+
 
 function OrderPlaced() {
   const [coordinates, setCoordinates] = useState([]);
@@ -42,14 +45,25 @@ function OrderPlaced() {
     return Math.floor(dist / 300);
   }
 
+  const { width, height } = useWindowSize()
   return (
     <>
-    {distance ? 
+    {/* { distance ? 
       (<div>
         <h3>Your order has been placed!</h3>
         <h4>Estimated delivery time: {distance !== 0 && distance} days!</h4>
       </div>) : (<h4>Calculating delivery time! Please wait</h4>)
-    }
+    } */}
+    <div className="d-flex justify-content-center align-items-center h-screen my-5">
+    <div className="container my-5 mx-5 shadow-lg border px-5 py-5 "style={{width:"50vw",margin:"0",padding:"0",height:"30vh"}}>
+        <h3>Your order has been placed!</h3>
+        <h4>Estimated delivery time: {distance !== 0 && distance} days!</h4>
+      </div>
+      </div>
+      <Confetti
+      width={width}
+      height={height}
+    />
     </>
   )
 }
