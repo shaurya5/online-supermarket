@@ -12,7 +12,7 @@ function AddManager() {
   async function handleClick() {
     try {
       const request = await axios.post(
-        "http://localhost:8080/registerNewUser",
+        "http://localhost:8080/registerNewManager",
         {
           userName: username,
           userFirstName: name,

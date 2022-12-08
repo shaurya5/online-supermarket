@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function ProfileCard() {
   const [userDetails, setUserDetails] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [showPwdModal, setShowPwdModal] = useState(false);
-
+  const navigate = useNavigate()
+  
   useEffect(() => {
     (async () => {
       const username = localStorage.getItem("username");
@@ -133,7 +135,7 @@ function ProfileCard() {
     }
 
     return (
-      <div>
+      <div className="w-75">
         <Form className="shadow-lg rounded w-25 mt-5 mx-5 p-2 d-flex flex-column flex-start justify-content-center align-items-center border bg-gray mx-5">
           <Form.Group>
             <h3>Top Up Wallet</h3>
@@ -171,8 +173,21 @@ function ProfileCard() {
     setShowPwdModal(false);
   }
 
+  async function handleDelete() {
+    const username = localStorage.getItem('username')
+    try {
+      await axios.delete(`http://localhost:8080/deleteUserDetails/${username}`)
+      alert('User Deleted!')
+      navigate('/login')
+      localStorage.clear()
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+
   return (
-    <div className="p-4 mb-10"  >
+    <div className="p-4 mb-10 d-flex flex-row"  >
       {Object.keys(userDetails).length === 0 ? (
         <div>Loading...</div>
       ) : (
@@ -204,6 +219,7 @@ function ProfileCard() {
           <div className="d-flex flex-column">
             <Button onClick={handleClick}>Edit details</Button>
             <Button className="mt-3" onClick={handlePwdClick}>Change Password</Button>
+            <Button className="mt-3" variant="danger" onClick={handleDelete}>Delete Account</Button>
           </div>
         </Form>
       )}

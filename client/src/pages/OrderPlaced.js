@@ -38,18 +38,22 @@ function OrderPlaced() {
   //   })();
   // }, [coordinates]);
 
-  function calculateTime(dist) {
-    return Math.floor(dist / 300);
-  }
+  // function calculateTime(dist) {
+  //   return Math.floor(dist / 300);
+  // }
 
   return (
     <>
-    {distance ? 
+    {/* {!distance ? 
       (<div>
         <h3>Your order has been placed!</h3>
         <h4>Estimated delivery time: {distance !== 0 && distance} days!</h4>
       </div>) : (<h4>Calculating delivery time! Please wait</h4>)
-    }
+    } */}
+    <div>
+        <h3>Your order has been placed!</h3>
+        <h4>Estimated delivery time: {distance !== 0 && distance} days!</h4>
+      </div>
     </>
   )
 }

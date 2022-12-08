@@ -35,6 +35,9 @@ function AdminNav() {
               <Nav.Link className="link-text" href="/edit-products">
                 Edit Products
               </Nav.Link>
+              <Nav.Link className="link-text" href="/add-manager">
+                Add Manager
+              </Nav.Link>
               <Nav.Link className="link-text" href="#" onClick={handleLogout}>
                 Logout
               </Nav.Link>

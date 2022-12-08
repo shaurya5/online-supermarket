@@ -13,6 +13,8 @@ function DashboardNav() {
   function handleLogout() {
     localStorage.removeItem("role");
     localStorage.removeItem("token");
+    localStorage.removeItem('cartProds')
+    localStorage.removeItem('finalProds')
     navigate("/login");
   }
 

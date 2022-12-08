@@ -22,6 +22,7 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @org.hibernate.annotations.ForeignKey(name = "none")
     @JoinTable(name = "USER_ROLE",
     joinColumns = {
             @JoinColumn(name = "USER_ID")

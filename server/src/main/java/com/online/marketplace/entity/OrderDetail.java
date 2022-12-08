@@ -23,8 +23,10 @@ public class OrderDetail {
 
     private int orderZipcode;
     @OneToOne
+    @org.hibernate.annotations.ForeignKey(name = "none")
     private Product product;
     @OneToOne
+    @org.hibernate.annotations.ForeignKey(name = "none")
     private User user;
     private Integer quantity;
 

@@ -6,6 +6,7 @@ import com.online.marketplace.entity.Product;
 import com.online.marketplace.entity.Role;
 import com.online.marketplace.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerNewUser(User user) {
-        Role role = roleDao.findById("user").get();
+        Role role = new Role("user", "User Role");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         user.setRole(roles);
@@ -32,7 +33,7 @@ public class UserService {
     }
 
     public User registerNewManager(User user) {
-        Role role = roleDao.findById("manager").get();
+        Role role = new Role("manager", "Manager Role");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         user.setRole(roles);
@@ -41,19 +42,19 @@ public class UserService {
     }
 
     public void initRolesAndUser() {
-        Role adminRole = new Role();
-        adminRole.setName("admin");
-        adminRole.setDescription("Admin Role");
+        Role adminRole = new Role("admin", "Admin Role");
+//        adminRole.setName("admin");
+//        adminRole.setDescription("Admin Role");
         roleDao.save(adminRole);
 
-        Role userRole = new Role();
-        userRole.setName("user");
-        userRole.setDescription("User Role");
+        Role userRole = new Role("user", "User Role");
+//        userRole.setName("user");
+//        userRole.setDescription("User Role");
         roleDao.save(userRole);
 
-        Role managerRole = new Role();
-        managerRole.setName("manager");
-        managerRole.setDescription("Manager Role");
+        Role managerRole = new Role("manager", "Manager Role");
+//        managerRole.setName("manager");
+//        managerRole.setDescription("Manager Role");
         roleDao.save(managerRole);
 
         User adminUser = new User();
@@ -115,4 +116,8 @@ public class UserService {
         userDao.deleteById(userName);
     }
 
+    @Query(value = "SELECT * FROM user")
+    public void deleteUserFromUsername() {
+
+    }
 }

@@ -121,6 +121,8 @@ function UserForm() {
         config
       );
       console.log(request);
+      localStorage.removeItem('cartProds')
+      localStorage.removeItem('finalProds')
       navigate('/order-placed')
     } catch (err) {
       console.log(err);

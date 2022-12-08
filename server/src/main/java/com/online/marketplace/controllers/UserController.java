@@ -1,5 +1,6 @@
 package com.online.marketplace.controllers;
 
+import com.online.marketplace.dao.UserDao;
 import com.online.marketplace.entity.Product;
 import com.online.marketplace.entity.User;
 import com.online.marketplace.service.UserService;
@@ -8,13 +9,15 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserDao userDao;
     @PostConstruct
     public void initRolesAndUsers() {
         userService.initRolesAndUser();
@@ -80,5 +83,10 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     public User topupWallet(@RequestBody User user) {
         return userService.topupWallet(user);
+    }
+
+    @GetMapping({"/helloworld"})
+    public List<User> deleteUser() {
+        return userDao.deleteUserFromUsername();
     }
 }
