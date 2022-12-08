@@ -59,6 +59,7 @@ function AddManager() {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    window.location.reload(false)
     handleValidation();
     await axios.post('http://localhost:8080/registerNewUser', {
       userName: username,

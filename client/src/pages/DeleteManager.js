@@ -50,6 +50,7 @@ function RegisterCard() {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    window.location.reload(false)
     handleValidation();
     try {
       await axios.delete(`http://localhost:8080/deleteUserDetails/${username}`)
