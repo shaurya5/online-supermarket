@@ -15,6 +15,7 @@ function DashboardNav() {
     localStorage.removeItem("token");
     localStorage.removeItem('cartProds')
     localStorage.removeItem('finalProds')
+    localStorage.removeItem('username')
     navigate("/login");
   }
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AdminLoginCard() {
   const [username, setUsername] = useState("");
@@ -51,9 +53,11 @@ function AdminLoginCard() {
         navigate('/add-products')
       }
       else {
+        toast("Username or Password Incorrect!");
         console.log("Authentication error!")
       }
     } catch (err) {
+      toast("Username or Password Incorrect!");
       console.log(err);
     }
   };
