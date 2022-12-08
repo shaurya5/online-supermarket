@@ -4,6 +4,9 @@ import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FileBase from "react-file-base64";
 import AdminNav from "../components/navs/AdminNav";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function AddProducts() {
   async function handleClick(event) {
@@ -26,6 +29,7 @@ function AddProducts() {
       const response = await axios.post(
         'http://localhost:8080/addNewProduct', data
       )
+      toast("New Product Added!");
       console.log(response)
     }
     catch(err) {
@@ -76,6 +80,7 @@ function AddProducts() {
             Submit
           </Button>
         </Form>
+        <ToastContainer/>
       </div>
     </>
   );

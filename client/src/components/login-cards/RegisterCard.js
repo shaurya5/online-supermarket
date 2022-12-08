@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from 'axios';
 import styles from "../../styles/loginCard.module.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function RegisterCard() {
   const [password, setPassword] = useState("");
@@ -17,7 +20,7 @@ function RegisterCard() {
   const handleValidation = (event) => {
     let formIsValid = true;
     if (firstName === "" || lastName === "") {
-      setNameError("Name cannot be empty");
+      setNameError("");
       formIsValid = false;
       return false;
     } else {
@@ -27,7 +30,7 @@ function RegisterCard() {
 
     if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
       formIsValid = false;
-      setemailError("Email Not Valid");
+      setemailError("");
       return false;
     } else {
       setemailError("");
@@ -37,7 +40,7 @@ function RegisterCard() {
     if (!password.match(/^[a-zA-Z]{8,22}$/)) {
       formIsValid = false;
       setpasswordError(
-        "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
+        ""
       );
       return false;
     } else {
@@ -47,7 +50,7 @@ function RegisterCard() {
 
     if (password !== confPass) {
       formIsValid = false;
-      setConfPassError("Password and Confirm Password have to be same");
+      setConfPassError("");
       return false;
     } else {
       setConfPassError("");
@@ -66,7 +69,10 @@ function RegisterCard() {
       userLastName: lastName,
       userPassword: password 
     })
+    
     .then(res => console.log(res))
+    toast("Success, You are registered !");
+
   };
 
   return (

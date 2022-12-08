@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function LoginCard() {
@@ -9,6 +11,7 @@ function LoginCard() {
   const [userName, setUserName] = useState("");
   const [userPasswordError, setUserPasswordError] = useState("");
   const [userNameError, setUserNameError] = useState("");
+  
 
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ function LoginCard() {
     if (!userPassword.match(/^[a-zA-Z]{8,22}$/)) {
       formIsValid = false;
       setUserPasswordError(
-        "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
+        ""
       );
       return false;
     } else {
@@ -59,16 +62,19 @@ function LoginCard() {
         navigate('/dashboard')
       }
       else {
+        toast("Username or Password Incorrect!");
         console.log("Authentication error!")
+        
       }
     } catch (err) {
+      toast("No user registered!");
       console.log(err);
     }
   };
   // style={{backgroundImage: require(ecombg)}}
 
   return (
-    <div className="container" style={{backgroundImage: "linear-gradient(to right top, #637898, #009bc3, #00bfbf, #00db86, #a8eb12)",width:"100vw",height:"92vh",padding:"0"}}> 
+    <div className="container" > 
       <div className="row d-flex justify-content-center align-items-center" style={{width:"100%",margin:"0",padding:"0"}}>
         <div className="col-md-4 border border-secondary p-3 rounded shadow-lg bg-light my-5">
           <form id="loginform" onSubmit={loginSubmit}>
