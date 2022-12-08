@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function AdminNav() {
   const navigate = useNavigate()
+  const role = localStorage.getItem('role')
 
   function handleLogout() {
     localStorage.removeItem('role')
@@ -35,12 +36,12 @@ function AdminNav() {
               <Nav.Link className="link-text" href="/edit-products">
                 Edit Products
               </Nav.Link>
-              <Nav.Link className="link-text" href="/edit-users">
+              {role === "admin" && <Nav.Link className="link-text" href="/edit-users">
                 Edit Users
-              </Nav.Link>
-              <Nav.Link className="link-text" href="/edit-managers">
+              </Nav.Link>}
+              {role === "admin" && <Nav.Link className="link-text" href="/edit-managers">
                 Edit Managers
-              </Nav.Link>
+              </Nav.Link>}
               <Nav.Link className="link-text" href="#" onClick={handleLogout}>
                 Logout
               </Nav.Link>

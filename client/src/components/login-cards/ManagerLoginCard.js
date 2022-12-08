@@ -45,10 +45,10 @@ function ManagerLoginCard() {
         },
       });
       console.log(response);
-      if(response.data.user.role[0].name === "admin") {
-        localStorage.setItem('role', 'admin');
+      if(response.data.user.role[0].name === "user") {
+        localStorage.setItem('role', 'manager');
         localStorage.setItem('token', response.data.jwtToken)
-        navigate('/dashboard')
+        navigate('/add-products')
       }
       else {
         console.log("Authentication error!")

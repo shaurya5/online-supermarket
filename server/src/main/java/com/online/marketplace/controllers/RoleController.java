@@ -15,5 +15,5 @@ public class RoleController {
     public Role createNewRole(@RequestBody Role role) {
         return roleService.createNewRole(role);
     }
-    
+
 }
