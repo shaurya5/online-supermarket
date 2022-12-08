@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ProductDetails() {
-  const products = JSON.parse(localStorage.getItem("cartProds") || "[]");
+  // const products = JSON.parse(localStorage.getItem("cartProds") || "[]");
+  const [products, setProducts] = useState(JSON.parse(localStorage.getItem("cartProds") || "[]"))
   const tableRef = useRef(null);
   const [finalProducts, setFinalProducts] = useState([]);
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ function ProductDetails() {
       return product.productId !== index
     })
     localStorage.setItem('cartProds', JSON.stringify(products))
+    setProducts(products)
   }
 
   return (
