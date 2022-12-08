@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from 'axios';
 import styles from "../styles/loginCard.module.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RegisterCard() {
   const [password, setPassword] = useState("");
@@ -53,8 +55,10 @@ function RegisterCard() {
     handleValidation();
     try {
       await axios.delete(`http://localhost:8080/deleteUserDetails/${username}`)
+      toast("Manager Deleted!");
     }
     catch(err) {
+       toast("Error!");
       console.log(err)
     }
   };
