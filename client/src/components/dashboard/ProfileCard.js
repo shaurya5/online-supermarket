@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProfileCard() {
   const [userDetails, setUserDetails] = useState({});
@@ -35,7 +37,7 @@ function ProfileCard() {
           userFirstName: firstName,
           userLastName: lastName
         })
-        alert('User updated')
+        toast("User details updated");
       }
       catch(err) {
         console.log(err)
@@ -85,7 +87,7 @@ function ProfileCard() {
           userName: localStorage.getItem('username'),
           userPassword: password
         })
-        alert('Password changed successfully!');
+        toast("Password changed succesfully");
       }
       catch(err) {
         console.log(err)
@@ -120,14 +122,14 @@ function ProfileCard() {
       e.preventDefault()
       try {
         if(wallet <= 0) {
-          alert('Enter a positive number to add!')
+          toast("Enter a positive value to add");
           return
         }
         const request = await axios.put('http://localhost:8080/topupWallet', {
           userName: localStorage.getItem('username'),
           wallet: parseInt(wallet) + parseInt(currentWallet)
         })
-        alert('Money added to wallet!')
+        toast("Money added to wallet");
       }
       catch(err) {
         console.log(err)
@@ -177,7 +179,7 @@ function ProfileCard() {
     const username = localStorage.getItem('username')
     try {
       await axios.delete(`http://localhost:8080/deleteUserDetails/${username}`)
-      alert('User Deleted!')
+      toast("User deleted");
       navigate('/login')
       localStorage.clear()
     }

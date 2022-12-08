@@ -3,6 +3,8 @@ import axios from "axios";
 import { Form, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminNav from "../components/navs/AdminNav";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProductDetails() {
   const [productDetails, setProductDetails] = useState([]);
@@ -43,7 +45,7 @@ function ProductDetails() {
         productDiscountedPrice,
       }
     );
-    alert("Product Info Updated!");
+    toast("Product Succesfully Edited");
     setShowModal(false);
   }
 
@@ -53,7 +55,7 @@ function ProductDetails() {
       const request = await axios.delete(
         `http://localhost:8080/deleteProductDetails/${productID}`
       );
-      alert("Product Deleted!");
+      toast("Product Succesfully Deleted");
     } catch (err) {
       console.log(err);
     }
@@ -157,6 +159,7 @@ function ProductDetails() {
             </Modal.Header>
           </Modal>
         )}
+        <ToastContainer/>
       </div>
     </>
   );

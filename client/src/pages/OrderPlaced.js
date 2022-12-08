@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Confetti from 'react-confetti'
 import {useWindowSize} from 'react-use';
+import DashboardNav from "../components/navs/DashboardNav";
 
 
 function OrderPlaced() {
@@ -48,6 +49,7 @@ function OrderPlaced() {
   const { width, height } = useWindowSize()
   return (
     <>
+    <DashboardNav/>
     {/* { distance ? 
     {/* {!distance ? 
       (<div>
@@ -55,10 +57,7 @@ function OrderPlaced() {
         <h4>Estimated delivery time: {distance !== 0 && distance} days!</h4>
       </div>) : (<h4>Calculating delivery time! Please wait</h4>)
     } */}
-    <div>
-        <h3>Your order has been placed!</h3>
-        <h4>Estimated delivery time: {distance !== 0 && distance} days!</h4>
-      </div> */}
+    
     <div className="d-flex justify-content-center align-items-center h-screen my-5">
     <div className="container my-5 mx-5 shadow-lg border px-5 py-5 "style={{width:"50vw",margin:"0",padding:"0",height:"30vh"}}>
         <h3>Your order has been placed!</h3>
