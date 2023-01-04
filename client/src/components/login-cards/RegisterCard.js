@@ -76,9 +76,9 @@ function RegisterCard() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className="row d-flex justify-content-center">
-        <div className="col-md-4 border border-secondary p-3 rounded">
+    <div className="container" > 
+    <div className="row mt-5 d-flex justify-content-center align-items-center" style={{width:"100%",margin:"0",padding:"0"}}>
+      <div className="col-md-4 mt-5 border border-secondary p-3 rounded shadow-lg bg-light my-5">
           <form id="loginform">
             <h4 className="text-center">Register</h4>
             <div className="form-group">

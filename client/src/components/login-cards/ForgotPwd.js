@@ -3,6 +3,8 @@ import styles from "../../styles/loginCard.module.css";
 import NavigationBar from "../navs/NavigationBar";
 import emailjs from "emailjs-com";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ForgotPwd() {
   const [email, setEmail] = useState("");
@@ -22,20 +24,21 @@ function ForgotPwd() {
   async function handleClick(e) {
     e.preventDefault();
     const new_password = generateRandomPassword(10);
-    // emailjs.send(
-    //   "service_zo6gucq",
-    //   "template_og6jr4o",
-    //   {
-    //     new_password,
-    //     user_email: email
-    //   },
-    //   "ITZ1kNWi5iduyLDxv"
-    // );
+    emailjs.send(
+      "service_zo6gucq",
+      "template_og6jr4o",
+      {
+        new_password,
+        user_email: email
+      },
+      "ITZ1kNWi5iduyLDxv"
+    );
 
     const request = await axios.put('http://localhost:8080/editUserPassword', {
       userName: username,
       userPassword: new_password
     })
+    toast("Password Changed. Check Email!");
   }
 
   return (

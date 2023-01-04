@@ -54,20 +54,20 @@ function LoginCard() {
           password: userPassword,
         },
       });
-      // console.log(response);
-      if(response.data.user.role[0].name === "user") {
+      console.log(response);
+      // if(response.data.user.role[0].name === "user") {
         localStorage.setItem('role', 'user');
         localStorage.setItem('token', response.data.jwtToken)
         localStorage.setItem('username', response.data.user.userName)
         navigate('/dashboard')
-      }
-      else {
-        toast("Username or Password Incorrect!");
-        console.log("Authentication error!")
+      // }
+      // else {
+      //   toast("Username or Password Incorrect!");
+      //   console.log("Authentication error!")
         
-      }
+      // }
     } catch (err) {
-      toast("No user registered!");
+      toast("Error!");
       console.log(err);
     }
   };
@@ -75,8 +75,8 @@ function LoginCard() {
 
   return (
     <div className="container" > 
-      <div className="row d-flex justify-content-center align-items-center" style={{width:"100%",margin:"0",padding:"0"}}>
-        <div className="col-md-4 border border-secondary p-3 rounded shadow-lg bg-light my-5">
+      <div className="row mt-5 d-flex justify-content-center align-items-center" style={{width:"100%",margin:"0",padding:"0"}}>
+        <div className="col-md-4 mt-5 border border-secondary p-3 rounded shadow-lg bg-light my-5">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
               <h4 className="text-center">User Login</h4>

@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "../../styles/loginCard.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ManagerLoginCard() {
   const [username, setUsername] = useState("");
@@ -18,7 +20,7 @@ function ManagerLoginCard() {
     if (!password.match(/^[a-zA-Z]{8,22}$/)) {
       formIsValid = false;
       setpasswordError(
-        "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
+        ""
       );
       return false;
     } else {
@@ -49,8 +51,10 @@ function ManagerLoginCard() {
         localStorage.setItem('role', 'manager');
         localStorage.setItem('token', response.data.jwtToken)
         navigate('/add-products')
+
       }
       else {
+        toast("Username or Password Incorrect!");
         console.log("Authentication error!")
       }
     } catch (err) {
@@ -59,9 +63,9 @@ function ManagerLoginCard() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className="row d-flex justify-content-center">
-        <div className="col-md-4 border border-secondary p-3 rounded">
+    <div className="container" > 
+      <div className="row mt-5 d-flex justify-content-center align-items-center" style={{width:"100%",margin:"0",padding:"0"}}>
+        <div className="col-md-4 mt-5 border border-secondary p-3 rounded shadow-lg bg-light my-5">
           <form id="loginform" onSubmit={loginSubmit}>
             <div className="form-group">
               <h4 className="text-center">Manager Login</h4>
